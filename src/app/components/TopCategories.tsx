@@ -15,8 +15,8 @@ const TopCategories = () => {
     <div className="w-[80%] mx-auto mt-10 my-6">
       {/* Top Categories Section */}
       <h2 className="text-2xl font-bold mb-6">Top Categories</h2>
-      <section className=" h-full">     
-        <div className="grid grid-cols-3 gap-4">
+      <section className="h-full">     
+        <div className=" grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((category, idx) => (
             <CategoryCard key={idx} title={category.title} img={category.img} />
           ))}
@@ -43,7 +43,7 @@ const CategoryCard = ({ title, img }: CategoryCardAttributs) => {
         height={400}
         className="object-cover w-full h-full"
       />
-      <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center h-[85px] top-44">
+      <div className="absolute  bg-black bg-opacity-70 flex items-center justify-center h-[85px] -inset- ">
         <p className="text-white text-lg font-semibold">{title}</p>
       </div>
     </div>
