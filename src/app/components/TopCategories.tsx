@@ -43,7 +43,7 @@ const CategoryCard = ({ title, img }: CategoryCardAttributs) => {
         height={400}
         className="object-cover w-full h-full"
       />
-      <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center h-20 -top-0">
+      <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center h-[85px] top-44">
         <p className="text-white text-lg font-semibold">{title}</p>
       </div>
     </div>
