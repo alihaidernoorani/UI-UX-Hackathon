@@ -30,7 +30,7 @@ export default TopCategories;
 
 interface CategoryCardAttributs {
     title: string;
-    img: string | StaticImageData;
+    img: StaticImageData;
 }
 
 const CategoryCard = ({ title, img }: CategoryCardAttributs) => {

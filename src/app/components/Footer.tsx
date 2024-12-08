@@ -1,141 +1,137 @@
-import React from 'react'
-import Link from 'next/link'
-import { FaFacebook } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import Logo from '@/assets/Logo.png';
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaPinterest,
+  FaYoutube,
+} from 'react-icons/fa';
 
 const Footer = () => {
   return (
-  <footer className="text-gray-600 body-font">
-    <div className="container px-5 py-24 mx-auto">
-      <div className="flex flex-wrap md:text-left text-center order-first">
-        <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-          <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-            CATEGORIES
-          </h2>
-          <p>Vivamus tristique odio sit amet velit semper, eu posuere turpis interdum.
-            Cras egestas purus </p>
-          <nav className=" flex list-none mb-10">
-            
-            <li>
-              <Link href={''} className="text-gray-600 hover:text-gray-800"><FaFacebook /></Link>
-            </li>
-            <li>
-              <Link href={''} className="text-gray-600 hover:text-gray-800"><FaTwitter /></Link>
-            </li>
-            <li>
-              <Link href={''} className="text-gray-600 hover:text-gray-800"><FaInstagram /></Link>
-            </li>
-            <li>
-              <Link href={''} className="text-gray-600 hover:text-gray-800">Fourth Link</Link>
-            </li>
-          </nav>
-        </div>
-        <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-          <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-            CATEGORIES
-          </h2>
-          <nav className="list-none mb-10">
-            <li>
-              <Link href={''} className="text-gray-600 hover:text-gray-800">First Link</Link>
-            </li>
-            <li>
-              <Link href={''} className="text-gray-600 hover:text-gray-800">Second Link</Link>
-            </li>
-            <li>
-              <Link href={''} className="text-gray-600 hover:text-gray-800">Third Link</Link>
-            </li>
-            <li>
-              <Link href={''} className="text-gray-600 hover:text-gray-800">Fourth Link</Link>
-            </li>
-          </nav>
-        </div>
-        <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-          <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-            CATEGORIES
-          </h2>
-          <nav className="list-none mb-10">
-            <li>
-              <Link href={''} className="text-gray-600 hover:text-gray-800">First Link</Link>
-            </li>
-            <li>
-              <Link href={''} className="text-gray-600 hover:text-gray-800">Second Link</Link>
-            </li>
-            <li>
-              <Link href={''} className="text-gray-600 hover:text-gray-800">Third Link</Link>
-            </li>
-            <li>
-              <Link href={''} className="text-gray-600 hover:text-gray-800">Fourth Link</Link>
-            </li>
-          </nav>
-        </div>
-        <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-          <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-            SUBSCRIBE
-          </h2>
-          <div className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
-            <div className="relative w-40 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
-              <label
-                htmlFor="footer-field"
-                className="leading-7 text-sm text-gray-600"
-              >
-                Placeholder
-              </label>
+    <footer className="w-[80%] mx-auto bg-white text-black body-font">
+      <div className="container text-base px-5 py-24 mx-auto">
+        <div className="flex flex-wrap md:text-left text-center order-first">
+          {/* Logo and Social Media */}
+          <div className="lg:w-1/4 md:w-1/2 w-full px-4 space-y-6 md:justify-start">
+            <Image src={Logo} alt="Logo" width={150} height={50} />
+            <p>
+              Vivamus tristique odio sit amet velit semper, eu posuere turpis
+              interdum. Cras egestas purus.
+            </p>
+            <nav
+              className="flex justify-center md:justify-start list-none gap-4"
+              aria-label="Social Media Links"
+            >
+              <li>
+                <Link href={'/'}>
+                  <FaFacebook aria-label="Facebook" />
+                </Link>
+              </li>
+              <li>
+                <Link href={'/'}>
+                  <FaTwitter aria-label="Twitter" />
+                </Link>
+              </li>
+              <li>
+                <Link href={'/'}>
+                  <FaInstagram aria-label="Instagram" />
+                </Link>
+              </li>
+              <li>
+                <Link href={'/'}>
+                  <FaPinterest aria-label="Pinterest" />
+                </Link>
+              </li>
+              <li>
+                <Link href={'/'}>
+                  <FaYoutube aria-label="YouTube" />
+                </Link>
+              </li>
+            </nav>
+          </div>
+
+          {/* Categories */}
+          <div className="lg:w-1/6 md:w-1/2 w-full px-4">
+            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+              CATEGORY
+            </h2>
+            <nav className="list-none mb-10">
+              <li>
+                <Link href={'/'}>Sofa</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Armchair</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Wing Chair</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Wooden Chair</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Park Bench</Link>
+              </li>
+            </nav>
+          </div>
+
+          {/* Support */}
+          <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+              SUPPORT
+            </h2>
+            <nav className="list-none mb-10">
+              <li>
+                <Link href={'/'}>Help & Support</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Terms & Conditions</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Privacy Policy</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Help</Link>
+              </li>
+            </nav>
+          </div>
+
+          {/* Newsletter */}
+          <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+              NEWSLETTER
+            </h2>
+            <div className="flex gap-2 relative w-full xl:mr-4 lg:mr-0">
               <input
                 type="text"
                 id="footer-field"
                 name="footer-field"
-                className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                placeholder="Your email"
+                className="w-[285px] bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base outline-none text-gray-700 py-2 px-4 transition-colors duration-200 ease-in-out"
               />
+              <button className="inline-flex text-white bg-[#029FAE] border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                Subscribe
+              </button>
             </div>
-            <button className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-              Button
-            </button>
+            <p className="text-gray-500 text-sm mt-2 md:text-left text-center">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              tincidunt erat enim.
+            </p>
           </div>
-          <p className="text-gray-500 text-sm mt-2 md:text-left text-center">
-            Bitters chicharrones fanny pack
-            <br className="lg:block hidden" />
-            waistcoat green juice
-          </p>
         </div>
       </div>
-    </div>
-    <div className="bg-gray-100">
-      <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
-        <Link href={''} className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-          </svg>
-          <span className="ml-3 text-xl">Tailblocks</span>
-        </Link>
-        <p className="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">
-          © 2020 Tailblocks —
-          <Link 
-            href="https://twitter.com/knyttneve"
-            rel="noopener noreferrer"
-            className="text-gray-600 ml-1"
-            target="_blank"
-          >
-            @knyttneve
-          </Link>
-        </p>
-        <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-        
-          </span>
-      </div>
-    </div>
-  </footer>
-  )
-}
 
-export default Footer
+      {/* Footer Bottom */}
+      <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
+        <p className="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">
+          © 2021 Blogy - Designed & Developed by Zakirsoft
+        </p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
