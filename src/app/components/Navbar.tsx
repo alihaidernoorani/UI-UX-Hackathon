@@ -1,66 +1,96 @@
-import React from 'react';
-import { FaCheck } from "react-icons/fa";
+"use client";
+
+import React, { useState } from "react";
+import { FaBars, FaTimes, FaCheck } from "react-icons/fa";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { BsCartDash } from "react-icons/bs";
-import Link from 'next/link';
-import Image from 'next/image';
-import Logo from '@/assets/Logo.png';
-
+import Link from "next/link";
+import Image from "next/image";
+import Logo from "@/assets/Logo.png";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div>
-        {/* Top header */}
-        <div className='bg-[#272343] w-full h-[45px] flex justify-around items-center text-white '>
-            <div className='flex justify-between gap-2 items-center opacity-[70%]'>
-            <FaCheck className='text-base'/> <span className=' text-[13px]'>Free shipping on all orders over $50</span> 
-            </div>
-            <div className='flex text-[13px] space-x-6 opacity-[70%]'>
-                <select name="" id="" className='bg-[#272343] '>
-                    <option value="">Eng</option>
-                </select>
-                <span>Faqs</span>
-                <div className='flex justify-between items-center gap-[6px]'><AiOutlineExclamationCircle className='text-base'/> <span>Need Help</span></div>
-            </div>
+    <div className="w-full">
+      {/* Top Header */}
+      <div className="bg-[#272343] flex justify-center w-full h-[45px]">
+      <div className="flex justify-between items-center w-[80%] h-full text-white text-xs">
+        <div className="flex items-center gap-2 opacity-70">
+          <FaCheck className="text-base" />
+          <span>Free shipping on all orders over $50</span>
         </div>
-        {/* Second Header */}
-        <div className='bg-[#F0F2F3] flex justify-around items-center w-full h-[84px]'>
-            <div>
-              <Image src={Logo} alt='Logo'/>
-            </div>
-            <button className='bg-white text-xs px-4 py-[11px] gap-3 rounded-sm flex justify-center items-center'>
-              <BsCartDash />
-              Cart
-            </button>
+        <div className="flex items-center space-x-6 opacity-70">
+          <select name="language" className="bg-[#272343] text-white outline-none">
+            <option value="eng">Eng</option>
+          </select>
+          <span>Faqs</span>
+          <div className="flex items-center gap-2">
+            <AiOutlineExclamationCircle className="text-base" />
+            <span>Need Help</span>
+          </div>
         </div>
-        {/* Navbar */}
-        <div className='flex justify-around items-center bg-white w-full h-[74px] text-sm'>
-          <div>
-            <ul className='flex gap-8'>
-              <li>
-                <Link href={'/'}>Home</Link>
+      </div>
+      </div>
+      {/* Second Header */}
+      <div className="bg-[#F0F2F3] flex justify-center w-full h-[84px]">
+      <div className="w-[80%] flex justify-between items-center w-[80%] h-full">
+        <Image src={Logo} alt="Logo" width={150} height={50} />
+        <button className="bg-white text-xs px-4 py-2 rounded-sm flex items-center gap-2 shadow hover:shadow-lg">
+          <BsCartDash />
+          Cart
+        </button>
+      </div>
+      </div>
+      {/* Main Navbar */}
+      <div className="relative bg-white w-full h-[74px] flex justify-center">
+        <div className="flex justify-between items-center w-[80%] h-full">
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex gap-8 items-center text-sm">
+            {["Home", "Shop", "Product", "Pages", "About"].map((item, index) => (
+              <li key={index} className="hover:text-[#272343] transition-colors">
+                <Link href={`/${item.toLowerCase()}`}>{item}</Link>
               </li>
-              <li>
-                <Link  href={'/'}>Shop</Link>
-              </li>
-              <li>
-                <Link  href={'/'}>Product</Link>
-              </li>
-              <li>
-                <Link  href={'/'}>Pages</Link>
-              </li>
-              <li>
-                <Link  href={'/'}>About</Link>
-              </li>
+            ))}
+          </ul>
+
+          {/* Contact Information */}
+          <div className="hidden md:block">
+            <span>
+              Contact: <span className="font-medium">(808) 555-0111</span>
+            </span>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={toggleMenu}
+            className="md:hidden flex items-center justify-center text-xl text-[#272343]"
+            aria-label="Toggle Menu"
+          >
+            {isOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="absolute top-[74px] left-0 w-full bg-white shadow-lg p-4 md:hidden">
+            <ul className="flex flex-col gap-4">
+              {["Home", "Shop", "Product", "Pages", "About"].map((item, index) => (
+                <li key={index} className="hover:text-[#272343] transition-colors">
+                  <Link href={`/${item.toLowerCase()}`}>{item}</Link>
+                </li>
+              ))}
             </ul>
+            
           </div>
-          <div>
-              <span>Contact: <span className='font-medium'>(808) 555-0111</span></span>
-          </div>
-        </div>
-
+        )}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
