@@ -19,7 +19,7 @@ const Navbar = () => {
     <div className="w-full">
       {/* Top Header */}
       <div className="bg-[#272343] flex justify-center w-full h-[45px]">
-      <div className="flex justify-between items-center w-[80%] h-full text-white text-xs">
+      <div className="flex justify-between items-center w-full md:w-[80%] h-full text-white text-xs">
         <div className="flex items-center gap-2 opacity-70">
           <FaCheck className="text-base" />
           <span>Free shipping on all orders over $50</span>
@@ -38,7 +38,7 @@ const Navbar = () => {
       </div>
       {/* Second Header */}
       <div className="bg-[#F0F2F3] flex justify-center w-full h-[84px]">
-      <div className="w-[80%] flex justify-between items-center w-[80%] h-full">
+      <div className="flex justify-between items-center w-full md:w-[80%] h-full">
         <Image src={Logo} alt="Logo" width={150} height={50} />
         <button className="bg-white text-xs px-4 py-2 rounded-sm flex items-center gap-2 shadow hover:shadow-lg">
           <BsCartDash />
@@ -48,7 +48,7 @@ const Navbar = () => {
       </div>
       {/* Main Navbar */}
       <div className="relative bg-white w-full h-[74px] flex justify-center">
-        <div className="flex justify-between items-center w-[80%] h-full">
+        <div className="flex justify-between items-center w-full md:w-[80%] h-full">
           {/* Desktop Menu */}
           <ul className="hidden md:flex gap-8 items-center text-sm">
             {["Home", "Shop", "Product", "Pages", "About"].map((item, index) => (

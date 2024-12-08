@@ -52,7 +52,7 @@ const products: Product[] = [
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="border border-gray-200 p-4 rounded-md overflow-hidden relative">
+    <div className="rounded-md overflow-hidden relative">
       {product.isNew && (
         <div className="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded-sm">
           New

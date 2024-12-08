@@ -1,6 +1,6 @@
 import React from 'react';
-import Image from 'next/image';
-import WingChair from '@/assets/Waing Chair.png';
+import Image, { StaticImageData } from "next/image";
+import WingChair from '@/assets/Wing Chair.png';
 import StoolChair from '@/assets/Stool Chair.png';
 import DeskChair from '@/assets/Desk Chair.png';
 
@@ -12,11 +12,11 @@ const TopCategories = () => {
   ];
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="w-[80%] mx-auto mt-10 my-6">
       {/* Top Categories Section */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Top Categories</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <h2 className="text-2xl font-bold mb-6">Top Categories</h2>
+      <section className=" h-full">     
+        <div className="grid grid-cols-3 gap-4">
           {categories.map((category, idx) => (
             <CategoryCard key={idx} title={category.title} img={category.img} />
           ))}
@@ -28,12 +28,12 @@ const TopCategories = () => {
 
 export default TopCategories;
 
-// interface CategoryCardAttributs {
-//     title: string;
-//     img: string | StaticImageData;
-// }
+interface CategoryCardAttributs {
+    title: string;
+    img: string | StaticImageData;
+}
 
-const CategoryCard = ({ title, img }: any) => {
+const CategoryCard = ({ title, img }: CategoryCardAttributs) => {
   return (
     <div className="relative bg-gray-100 rounded-lg overflow-hidden group">
       <Image
@@ -43,7 +43,7 @@ const CategoryCard = ({ title, img }: any) => {
         height={400}
         className="object-cover w-full h-full"
       />
-      <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-50 flex items-center justify-center transition">
+      <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center h-20 -top-0">
         <p className="text-white text-lg font-semibold">{title}</p>
       </div>
     </div>
