@@ -138,26 +138,58 @@ const Products = () => {
       {/* Newsletter Section */}
       <div className='bg-[#1E28320D] flex flex-col items-center mx-auto py-10 mt-20'>
         <div className='max-w-[760px]'>
-          <h1 className='text-3xl xl:text-5xl text-center font-medium pt-20 pb-10 mt-20'>Or Subscribe To The Newsletter</h1>
+          <h1 className='text-3xl xl:text-4xl text-center font-medium pt-20 pb-10 mt-20'>Or Subscribe To The Newsletter</h1>
           <input type="text" placeholder='Email Address...' className='bg-[#1E28320D] w-2/3 mr-3 border-none border-b-black'/>
           <input type="submit" />
         </div>
         {/* Instagram Section */}
       <div className="flex flex-col items-center text-center mx-auto py-20">
-        <h1 className="text-3xl xl:text-5xl font-medium mb-10">
+        <h1 className="text-3xl xl:text-4xl font-medium mb-10">
           Follow Products And Discounts on Instagram
         </h1>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 w-[80%]">
-          {products.map((product) => (
-            <Image
-              key={product.id}
-              src={product.image}
-              alt={product.name}
+        <div className="flex gap-2 w-[80%] justify-center">
+             <Image
+              src={product5}
+              alt={'Chair'}
               width={200}
               height={200}
               className="rounded-md w-full h-auto object-cover"
             />
-          ))}
+            <Image
+              src={product4}
+              alt={'Chair'}
+              width={200}
+              height={200}
+              className="rounded-md w-full h-auto object-cover"
+            />
+            <Image
+              src={product2}
+              alt={'Chair'}
+              width={200}
+              height={200}
+              className="rounded-md w-full h-auto object-cover"
+            />
+            <Image
+              src={product1}
+              alt={'Chair'}
+              width={200}
+              height={200}
+              className="rounded-md w-full h-auto object-cover"
+            />
+            <Image
+              src={product3}
+              alt={'Chair'}
+              width={200}
+              height={200}
+              className="rounded-md w-full h-auto object-cover"
+            />
+            <Image
+              src={product5}
+              alt={'Chair'}
+              width={200}
+              height={200}
+              className="rounded-md w-full h-auto object-cover"
+            />
         </div>
       </div>
       </div>
