@@ -15,10 +15,10 @@ const Footer = () => {
     <footer className="bg-white text-black">
       {/* Main Content */}
       <div className="flex flex-col items-center justify-center px-4 py-16">
-        <div className="w-full max-w-[80%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
+        <div className="w-[80%] flex flex-col sm:flex-wrap md:flex-nowrap md:flex-row justify-center text-center md:text-start items-center md:items-start gap-4 ">
           {/* Logo and Social Media */}
-          <div className="space-y-6">
-            <Image src={Logo} alt="Logo" width={150} height={50} />
+          <div className="flex flex-col space-y-2 md:w-[40%] mb-6">
+            <Image src={Logo} alt="Logo" width={150} height={50} className="mx-auto md:mx-0" />
             <p>
               Vivamus tristique odio sit amet velit semper, eu posuere turpis
               interdum. Cras egestas purus.
@@ -43,11 +43,11 @@ const Footer = () => {
           </div>
 
           {/* Categories */}
-          <div>
-            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+          <div className="flex flex-col space-y-2 w-[25%] mb-6">
+            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3 ">
               CATEGORY
             </h2>
-            <nav className="space-y-2">
+            <nav className="flex flex-col">
               <Link href={"/"}>Sofa</Link>
               <Link href={"/"}>Armchair</Link>
               <Link href={"/"}>Wing Chair</Link>
@@ -57,11 +57,11 @@ const Footer = () => {
           </div>
 
           {/* Support */}
-          <div>
-            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+          <div className="w-1/3 mb-6">
+            <h2 className="title-font font-medium text-gray-900 text-sm mb-3">
               SUPPORT
             </h2>
-            <nav className="space-y-2">
+            <nav className="flex flex-col space-y-2">
               <Link href={"/"}>Help & Support</Link>
               <Link href={"/"}>Terms & Conditions</Link>
               <Link href={"/"}>Privacy Policy</Link>
@@ -70,11 +70,11 @@ const Footer = () => {
           </div>
 
           {/* Newsletter */}
-          <div>
+          <div className="w-2/3 mb-6">
             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
               NEWSLETTER
             </h2>
-            <div className="flex flex-col items-center md:items-start gap-2">
+            <div className="flex flex-col lg:flex-row items-center md:items-start gap-2">
               <input
                 type="text"
                 placeholder="Your email"
@@ -94,7 +94,7 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="bg-gray-100 w-full py-4">
-        <div className="w-full max-w-[80%] mx-auto flex flex-col items-center">
+        <div className="w-full max-w-[80%] flex flex-col mx-auto ">
           <p className="text-gray-500 text-sm">
             © 2021 Blogy - Designed & Developed by Zakirsoft
           </p>
