@@ -126,12 +126,24 @@ type Product = {
 
 const Products = () => {
   return (
-    <section className="w-[80%] mx-auto mt-10">
-      <h2 className="text-2xl font-bold mb-6 text-center">All Products</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+    <section>
+      <div className="w-[80%] mx-auto mt-10">
+        <h2 className="text-2xl font-bold mb-6 text-center">All Products</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </div>
+      <div className='bg-[#1E28320D] flex justify-center text-center '>
+        <div className='max-w-[760px]'>
+          <h1 className='text-3xl xl:text-5xl font-medium pt-20 pb-10 mt-20'>Or Subscribe To The Newsletter</h1>
+          <input type="text" placeholder='Email Address...' className='bg-[#1E28320D] w-2/3 mr-3 border-none border-b-black'/>
+          <input type="submit" />
+        </div>
+        <div>
+          <h1>Follow Products And Discounts on Instagram</h1>
+        </div>
       </div>
     </section>
   )

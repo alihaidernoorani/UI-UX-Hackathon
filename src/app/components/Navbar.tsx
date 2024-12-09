@@ -55,7 +55,7 @@ const Navbar = () => {
               <Link href="/">Home</Link>
             </li>
             <li className="hover:text-[#272343] transition-colors">
-              <Link href="/shop">Shop</Link>
+              <Link href="/products">Shop</Link>
             </li>
             <li className="hover:text-[#272343] transition-colors">
               <Link href="/products">Product</Link>
