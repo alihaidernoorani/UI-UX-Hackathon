@@ -7,13 +7,13 @@ import Style5 from "@/assets/Library Stool Chair 1.png";
 
 const StyleProducts = () => {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-10">
       {/* Outer Container */}
       <div className="w-[80%] flex flex-col md:flex-row items-center">
         {/* Left Section */}
         <div className="flex-none w-full md:w-1/2 p-4 relative">
           {/* Vertical Rotated Text */}
-          <div className="absolute -rotate-90 left-[-175px] top-1/2 transform -translate-y-1/2 text-lg font-semibold">
+          <div className="absolute md:-rotate-90 md:left-[-190px] left-8 top-1 md:top-1/2 text-center transform -translate-y-1/2 text-[10px] md:text-lg lg:text-xl font-semibold">
             EXPLORE NEW AND POPULAR STYLES
           </div>
           <Image

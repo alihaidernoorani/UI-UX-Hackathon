@@ -69,7 +69,7 @@ const Navbar = () => {
           </ul>
 
           {/* Contact Information */}
-          <div className="hidden md:block">
+          <div className="hidden md:block text-sm">
             <span>
               Contact: <span className="font-medium">(808) 555-0111</span>
             </span>
@@ -87,7 +87,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="absolute top-[74px] left-0 w-full bg-white shadow-lg p-4 md:hidden">
+          <div className="absolute top-[74px] w-full bg-white shadow-lg p-4 md:hidden">
             <ul className="flex flex-col gap-4">
               <li className="hover:text-[#272343] transition-colors">
                 <Link href="/">Home</Link>
@@ -103,6 +103,10 @@ const Navbar = () => {
               </li>
               <li className="hover:text-[#272343] transition-colors">
                 <Link href="/about">About</Link>
+              </li>
+              {/* Mobile Contact Information */}
+              <li className="mt-4 border-t pt-4 text-sm">
+                Contact: <span className="font-medium">(808) 555-0111</span>
               </li>
             </ul>
           </div>

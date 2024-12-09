@@ -12,7 +12,7 @@ const TopCategories = () => {
   ];
 
   return (
-    <div className="w-[80%] mx-auto mt-10 my-6">
+    <div className="w-[80%] mx-auto mt-10">
       {/* Top Categories Section */}
       <h2 className="text-2xl font-bold mb-6">Top Categories</h2>
       <section className="h-full">     

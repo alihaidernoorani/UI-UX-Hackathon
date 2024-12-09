@@ -11,7 +11,7 @@ import Logo7 from '@/assets/MOZ Logo.png';
 
 const Hero = () => {
   return (
-    <div className="flex flex-col justify-self-center items-center w-screen md:w-[80%] max-w-[1740px] h-[850px]">
+    <div className="flex flex-col justify-self-center items-center w-screen md:w-[80%] max-w-[1740px]">
       {/* Content Container */}
       <div className="bg-[#F0F2F3] flex flex-col items-center md:flex-row px-4 py-6">
         {/* Left Section */}
@@ -37,8 +37,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Companies Logos Section */}
-      <div className="flex flex-wrap justify-between items-center w-full max-w-[1740px]  mt-8 space-x-4">
+      <div className="flex flex-wrap justify-center items-center w-full max-w-[1740px] mt-8 gap-y-2 gap-x-6 px-4">
         <Image src={Logo1} alt="Zapier Logo" width={85} height={87} />
         <Image src={Logo2} alt="Pipedrive Logo" width={85} height={87} />
         <Image src={Logo3} alt="CIB Bank Logo" width={85} height={87} />
