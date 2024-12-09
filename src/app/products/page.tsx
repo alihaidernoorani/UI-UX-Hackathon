@@ -6,10 +6,12 @@ import product1 from '@/assets/Library Stool Chair 1.png';
 import product2 from '@/assets/Library Stool Chair 2.png';
 import product3 from '@/assets/Library Stool Chair 3.png';
 import product4 from '@/assets/Library Stool Chair 4.png';
-import product5 from '@/assets/Wing Chair.png';
+import product5 from '@/assets/Stool Chair.png';
 import product6 from '@/assets/Style Chair 3.png';
 import product7 from '@/assets/Library Sofa Chair.png';
 import product8 from '@/assets/Library Stool Chair 1.png';
+import product9 from '@/assets/Wing Chair.png';
+import product10 from '@/assets/Desk Chair.png';
 
 type Product = {
     id: number;
@@ -85,6 +87,38 @@ type Product = {
       image: product8.src, 
       onSale: false,
       isNew: false,
+    },
+    {
+      id: 9,
+      name: 'Wing Chair',
+      price: 20,
+      image: product9.src, 
+      onSale: false,
+      isNew: false,
+    },
+    {
+      id: 10,
+      name: 'Library Stool Chair',
+      price: 20,
+      image: product2.src, 
+      onSale: true,
+      isNew: false,
+    },
+    {
+      id: 11,
+      name: 'Library Stool Chair',
+      price: 20,
+      image: product3.src, 
+      onSale: false,
+      isNew: false,
+    },
+    {
+      id: 12,
+      name: 'Desk Chair',
+      price: 20,
+      image: product10.src, 
+      onSale: false,
+      isNew: false,
     }
   ];
   
@@ -156,7 +190,7 @@ const Products = () => {
               className="rounded-md w-full h-auto object-cover"
             />
             <Image
-              src={product4}
+              src={product9}
               alt={'Chair'}
               width={200}
               height={200}
@@ -184,7 +218,7 @@ const Products = () => {
               className="rounded-md w-full h-auto object-cover"
             />
             <Image
-              src={product5}
+              src={product10}
               alt={'Chair'}
               width={200}
               height={200}
