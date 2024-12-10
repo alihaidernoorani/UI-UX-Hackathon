@@ -13,7 +13,7 @@ const Hero = () => {
   return (
     <div className="flex flex-col justify-self-center items-center w-screen md:w-[80%] max-w-[1740px]">
       {/* Content Container */}
-      <div className="bg-[#F0F2F3] flex flex-col items-center md:flex-row px-4 py-6">
+      <div className="bg-[#F0F2F3] flex flex-col jusitfy-center items-center md:flex-row px-10 py-6">
         {/* Left Section */}
         <div className="flex flex-col justify-center md:w-2/3 lg:w-1/2 text-left">
           <span className="text-sm md:text-base text-gray-500 mb-2">
@@ -28,16 +28,16 @@ const Hero = () => {
         </div>
 
         {/* Right Section (Image) */}
-        <div className="md:w-1/2 flex justify-center mt-10 md:mt-0">
+        <div className="md:w-1/2 flex justify-center items-center mt-10 md:mt-0 py-12">
           <Image
             src={Product1}
             alt="Furniture Chair"
-            className="w-[300px] md:w-[450px] lg:w-[500px] object-contain"
+            className="w-[400px] object-contain"
           />
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center items-center w-full max-w-[1740px] mt-8 gap-y-2 gap-x-6 px-4">
+      <div className="flex flex-wrap justify-center md:justify-between items-center w-full max-w-[1740px] mt-8 gap-y-2 gap-x-6 px-4">
         <Image src={Logo1} alt="Zapier Logo" width={85} height={87} />
         <Image src={Logo2} alt="Pipedrive Logo" width={85} height={87} />
         <Image src={Logo3} alt="CIB Bank Logo" width={85} height={87} />
