@@ -12,7 +12,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-black">
+    <footer className="bg-white text-black border">
       {/* Main Content */}
       <div className="flex flex-col items-center justify-center px-4 py-16">
         <div className="w-[80%] flex flex-col sm:flex-wrap md:flex-nowrap md:flex-row justify-center text-center md:text-start items-center md:items-start gap-4 ">
@@ -93,7 +93,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="bg-gray-100 w-full py-4">
+      <div className="w-full py-4">
         <div className="w-full max-w-[80%] flex flex-col mx-auto ">
           <p className="text-gray-500 text-sm">
             © 2021 Blogy - Designed & Developed by Zakirsoft
