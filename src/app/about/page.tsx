@@ -1,5 +1,5 @@
 import React from 'react';
-import Image, {StaticImageData} from 'next/image';
+import Image from 'next/image';
 import { FaShippingFast } from "react-icons/fa";
 import { CiCircleCheck } from "react-icons/ci";
 import { CiCreditCard1 } from "react-icons/ci";
@@ -9,6 +9,9 @@ import Chair from '@/assets/Library Stool Chair 1.png';
 import Sofa from '@/assets/Large Sofa.png';
 import DandyChair1 from '@/assets/Dandy Chair 1.png';
 import DandyChair2 from '@/assets/Dandy Chair 2.png';
+
+import BrandDifferentCard from '../components/BrandDifferentCard';
+import ProductCard from '../components/ProductCard';
 
 const About = () => {
   return (
@@ -80,38 +83,3 @@ const About = () => {
 };
 
 export default About;
-
-
-
-// BrandDifferentCard Component
-interface CardProps {
-  icon: React.ReactNode;
-  heading: string;
-  text: string;
-}
-
-export const BrandDifferentCard = ({ icon, heading, text }: CardProps) => {
-  return (
-    <div className='bg-[#F9F9F9] text-[#007580] p-8 rounded-lg  flex flex-col items-start space-y-4'>
-      <div className='text-[#007580]'>{icon}</div>
-      <h3 className='text-lg font-bold'>{heading}</h3>
-      <p className='text-base leading-6'>{text}</p>
-    </div>
-  );
-};
-
-// ProductCard Component
-interface PoductCardProps {
-    img: StaticImageData;
-    name: string;
-}
-
-export const ProductCard = ({img, name}: PoductCardProps) => {
-    return (
-        <div className='space-y-4'>
-            <Image src={img} alt=''/>
-            <h3>{name}</h3>
-            <span>$99</span>
-        </div>
-    )
-}
