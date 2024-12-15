@@ -1,4 +1,4 @@
-import Image, {StaticImageData} from 'next/image';
+import React from 'react';
 
 // BrandDifferentCard Component
 interface CardProps {

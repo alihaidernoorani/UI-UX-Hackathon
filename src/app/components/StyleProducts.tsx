@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from "next/image";
 import Style1 from "@/assets/Library Stool Chair 3.png";
 import Style2 from "@/assets/Library Stool Chair 4.png";
