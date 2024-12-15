@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { GetStaticPaths, GetStaticProps } from 'next';
+// import { GetStaticPaths, GetStaticProps } from 'next';
 
 // Importing assets
 import product1 from '@/assets/Library Stool Chair 1.png';
@@ -45,7 +45,7 @@ export default function ProductPage({ product }: ProductProps) {
 
   return (
     <div>
-      {/* Product Information Section */}
+      Product Information Section
       <div>
         {/* Left Image Section */}
         <div>
@@ -63,22 +63,22 @@ export default function ProductPage({ product }: ProductProps) {
   );
 }
 
-// Generate paths for all products dynamically
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = products.map((product) => ({
-    params: { name: product.name.replace(/\s+/g, '-').toLowerCase() },
-  }));
+// // Generate paths for all products dynamically
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const paths = products.map((product) => ({
+//     params: { name: product.name.replace(/\s+/g, '-').toLowerCase() },
+//   }));
 
-  return { paths, fallback: false };
-};
+//   return { paths, fallback: false };
+// };
 
-// Fetch product details based on the name parameter
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { name } = context.params!;
-  const formattedName = (name as string).replace(/-/g, ' '); // Convert URL-friendly name back to original
-  const product = products.find((p) => p.name.toLowerCase() === formattedName.toLowerCase()) || null;
+// // Fetch product details based on the name parameter
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const { name } = context.params!;
+//   const formattedName = (name as string).replace(/-/g, ' '); // Convert URL-friendly name back to original
+//   const product = products.find((p) => p.name.toLowerCase() === formattedName.toLowerCase()) || null;
 
-  return {
-    props: { product },
-  };
-};
+//   return {
+//     props: { product },
+//   };
+// };
