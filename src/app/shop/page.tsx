@@ -1,17 +1,17 @@
 import React from 'react';
 import Image from 'next/image';
-import { BsCartDash } from "react-icons/bs";
+import ProductCard from '../components/ui/ProductCard';
 
-import product1 from '@/assets/Library Stool Chair 1.png';
-import product2 from '@/assets/Library Stool Chair 2.png';
-import product3 from '@/assets/Library Stool Chair 3.png';
-import product4 from '@/assets/Library Stool Chair 4.png';
-import product5 from '@/assets/Stool Chair.png';
-import product6 from '@/assets/Style Chair 3.png';
-import product7 from '@/assets/Library Sofa Chair.png';
-import product8 from '@/assets/Library Stool Chair 1.png';
-import product9 from '@/assets/Wing Chair.png';
-import product10 from '@/assets/Desk Chair.png';
+import product1 from '@/assets/Library-Stool-Chair-1.png';
+import product2 from '@/assets/Library-Stool-Chair-2.png';
+import product3 from '@/assets/Library-Stool-Chair-3.png';
+import product4 from '@/assets/Library-Stool-Chair-4.png';
+import product5 from '@/assets/Stool-Chair.png';
+import product6 from '@/assets/Style-Chair-3.png';
+import product7 from '@/assets/Library-Sofa-Chair.png';
+import product8 from '@/assets/Library-Stool-Chair-1.png';
+import product9 from '@/assets/Wing-Chair.png';
+import product10 from '@/assets/Desk-Chair.png';
 
 interface Product {
     id: number;
@@ -82,42 +82,3 @@ const Products = () => {
 }
 
 export default Products
-
-
-
-// Product card
-const ProductCard = ({ product }: { product: Product }) => {
-  return (
-    <div className="rounded-md overflow-hidden relative">
-      {product.isNew && (
-        <div className="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded-sm">
-          New
-        </div>
-      )}
-      {product.onSale && (
-        <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-sm">
-          Sale
-        </div>
-      )}
-      <Image
-        src={product.image}
-        alt={product.name}
-        width={312}
-        height={312}
-        className="w-full h-auto object-cover mb-4"
-      />
-      <div className='flex justify-between'>
-        <div>
-            <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-            <p className="text-gray-600 mb-2">${product.price}</p>
-        </div>
-        <button
-            className="p-4 rounded-lg hover:bg-[#029FAE] hover:text-white transition-all duration-200"
-            aria-label="Add to cart"
-        >
-            <BsCartDash className="text-2xl" />
-        </button>
-      </div>
-    </div>
-  );
-};

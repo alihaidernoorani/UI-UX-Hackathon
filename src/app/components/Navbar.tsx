@@ -15,7 +15,7 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const productNames = ['Library Stool Chair 1','Library Stool Chair 2','Library Stool Chair 3', 'Library Stool Chair 4', 'Library Stool Chair 5', 'Wing Chair']
+  const productNames = ['Library-Stool-Chair-1','Library-Stool-Chair-2','Library-Stool-Chair-3', 'Library-Stool-Chair-4', 'Wing-Chair']
 
   return (
     <div className="w-full">
@@ -58,20 +58,22 @@ const Navbar = () => {
             </li>
             <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
               <Link href="/shop">Shop</Link>
-            </li>
-            <li className="relative group">
+            </li><li className="relative group">
               Product
-              <ul className="absolute hidden group-hover:inline-block left-0 top-full bg-white text-nowrap p-2 space-y-2 rounded-md shadow-md">
-                  {productNames.map(prod=>(
-                     <li key={prod} className="hover:text-[#029FAE] hover:font-bold transition-colors">
-                     <Link href={`/product/${prod}`}>{prod}</Link>
-                   </li>
-                  ))}
+              <ul className="absolute z-10 hidden group-hover:inline-block left-0 top-full bg-white text-nowrap p-2 space-y-2 rounded-md shadow-md">
+                {productNames.map((prod) => {
+                  const cleanedProd = prod.replace(/-/g, " "); // Replace dashes with spaces
+                  return (
+                    <li key={prod} className="hover:text-[#029FAE] hover:font-bold transition-colors">
+                      <Link href={`/product/${prod}`}>{cleanedProd}</Link>
+                    </li>
+                  );
+                })}
               </ul>
             </li>
             <li className="relative group">
               Pages
-              <ul className="absolute hidden group-hover:inline-block left-0 top-full bg-white text-nowrap p-2 space-y-2 rounded-md shadow-md">
+              <ul className="absolute z-10 hidden group-hover:inline-block left-0 top-full bg-white text-nowrap p-2 space-y-2 rounded-md shadow-md">
                   <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
                     <Link href="/pages/contact">Contact Us</Link>
                   </li>
@@ -115,11 +117,14 @@ const Navbar = () => {
               <li className="relative group">
               Product
               <ul className="absolute z-10 hidden group-hover:inline-block left-0 top-full bg-white text-nowrap p-2 space-y-2 rounded-md shadow-md">
-                  {productNames.map(prod=>(
-                     <li key={prod} className="hover:text-[#029FAE] hover:font-bold transition-colors">
-                     <Link href={`/product/${prod}`}>{prod}</Link>
-                   </li>
-                  ))}
+                {productNames.map((prod) => {
+                  const cleanedProd = prod.replace(/-/g, " "); // Replace dashes with spaces
+                  return (
+                    <li key={prod} className="hover:text-[#029FAE] hover:font-bold transition-colors">
+                      <Link href={`/product/${prod}`}>{cleanedProd}</Link>
+                    </li>
+                  );
+                })}
               </ul>
             </li>
               <li className="relative group">

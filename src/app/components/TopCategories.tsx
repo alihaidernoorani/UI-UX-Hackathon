@@ -1,8 +1,8 @@
 import React from 'react';
 import Image, { StaticImageData } from "next/image";
-import WingChair from '@/assets/Wing Chair.png';
-import StoolChair from '@/assets/Stool Chair.png';
-import DeskChair from '@/assets/Desk Chair.png';
+import WingChair from '@/assets/Wing-Chair.png';
+import StoolChair from '@/assets/Stool-Chair.png';
+import DeskChair from '@/assets/Desk-Chair.png';
 
 interface CategoryCardAttributes {
   title: string;
@@ -18,7 +18,7 @@ const TopCategories = () => {
   ];
 
   return (
-    <div className="w-[80%] mx-auto mt-10">
+    <div className="w-[80%] mx-auto mt-20">
       {/* Top Categories Section */}
       <h2 className="text-2xl font-bold mb-6">Top Categories</h2>
       <section className="h-full">     

@@ -1,13 +1,12 @@
 import React from 'react';
 import Image, {StaticImageData} from 'next/image';
 
-// ProductCard Component
 interface PoductCardProps {
     img: StaticImageData;
     name: string;
 }
 
-const ProductCard = ({img, name}: PoductCardProps) => {
+const PopularProductCard = ({img, name}: PoductCardProps) => {
     return (
         <div className='space-y-4'>
             <Image src={img} alt=''/>
@@ -17,4 +16,4 @@ const ProductCard = ({img, name}: PoductCardProps) => {
     )
 }
 
-export default ProductCard
+export default PopularProductCard

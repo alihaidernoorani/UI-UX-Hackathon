@@ -5,13 +5,13 @@ import { CiCircleCheck } from "react-icons/ci";
 import { CiCreditCard1 } from "react-icons/ci";
 import { PiPlant } from "react-icons/pi";
 
-import Chair from '@/assets/Library Stool Chair 1.png';
-import Sofa from '@/assets/Large Sofa.png';
-import DandyChair1 from '@/assets/Dandy Chair 1.png';
-import DandyChair2 from '@/assets/Dandy Chair 2.png';
+import Chair from '@/assets/Library-Stool-Chair-1.png';
+import Sofa from '@/assets/Large-Sofa.png';
+import DandyChair1 from '@/assets/Dandy-Chair-1.png';
+import DandyChair2 from '@/assets/Dandy-Chair-2.png';
 
-import BrandDifferentCard from '../components/BrandDifferentCard';
-import ProductCard from '../components/ProductCard';
+import BrandDifferentCard from '../components/ui/BrandDifferentCard';
+import ProductCard from '../components/ui/PopularProductCard';
 
 const About = () => {
   return (

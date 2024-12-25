@@ -1,14 +1,14 @@
 import React from 'react';
 import Image from "next/image";
-import Style1 from "@/assets/Library Stool Chair 3.png";
-import Style2 from "@/assets/Library Stool Chair 4.png";
-import Style3 from "@/assets/Style Chair 3.png";
-import Style4 from "@/assets/Library Stool Chair 1.png";
-import Style5 from "@/assets/Library Stool Chair 1.png";
+import Style1 from "@/assets/Library-Stool-Chair-3.png";
+import Style2 from "@/assets/Library-Stool-Chair-4.png";
+import Style3 from "@/assets/Style-Chair-3.png";
+import Style4 from "@/assets/Library-Stool-Chair-1.png";
+import Style5 from "@/assets/Library-Stool-Chair-1.png";
 
 const StyleProducts = () => {
   return (
-    <div className="flex justify-center mt-10">
+    <div className="flex justify-center mt-20">
       {/* Outer Container */}
       <div className="w-[80%] flex flex-col md:flex-row items-center">
         {/* Left Section */}
