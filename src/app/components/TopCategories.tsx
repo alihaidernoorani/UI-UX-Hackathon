@@ -1,30 +1,56 @@
-import React from 'react';
-import Image, { StaticImageData } from "next/image";
-import WingChair from '@/assets/Wing-Chair.png';
-import StoolChair from '@/assets/Stool-Chair.png';
-import DeskChair from '@/assets/Desk-Chair.png';
+"use client"
+import React, { useState, useEffect } from 'react';
+import { client } from '@/sanity/lib/client';
+import CategoryCard from './cards/CategoryCard';
 
-interface CategoryCardAttributes {
+interface CategoryCardType {
+  id: string;
   title: string;
   products: string | number;
-  img: StaticImageData;
+  image: string; 
 }
 
-const TopCategories = () => {
-  const categories: CategoryCardAttributes[] = [
-    { title: "Wing Chair", products:"3,584", img: WingChair },
-    { title: "Wooden Chair", products:157, img: StoolChair },
-    { title: "Desk Chair", products:154, img: DeskChair },
-  ];
+const TopCategories: React.FC = () => {
+
+  const [products, setProducts] = useState<CategoryCardType[]>([]);
+
+  try{
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const query = `*[_type == "categories"]
+        {
+          _id,
+          title,
+          "imageUrl": image.asset->url,
+          products
+        }`;
+
+      const fetchedProducts = await client.fetch(query);
+
+      const formattedProducts = fetchedProducts.map((product: any) => ({
+        id: product._id,
+        title: product.title, 
+        image: product.imageUrl,
+        products: product.products
+      }));
+
+      setProducts(formattedProducts);
+    };
+
+    fetchProducts();
+  }, []);
+} catch(error) {
+  console.error("Error fetching products:", error);
+}
 
   return (
     <div className="w-[80%] mx-auto mt-20">
       {/* Top Categories Section */}
       <h2 className="text-2xl font-bold mb-6">Top Categories</h2>
-      <section className="h-full">     
-        <div className=" grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {categories.map((category, idx) => (
-            <CategoryCard key={idx} products={category.products} title={category.title} img={category.img} />
+      <section className="h-full">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {products.map((category) => (
+            <CategoryCard key={category.id} products={category.products} name={category.title} image={category.image} /> 
           ))}
         </div>
       </section>
@@ -33,23 +59,3 @@ const TopCategories = () => {
 };
 
 export default TopCategories;
-
-
-// Category Card
-const CategoryCard = ({ title, products, img }: CategoryCardAttributes) => {
-  return (
-    <div className="relative bg-gray-100 rounded-lg overflow-hidden group">
-      <Image
-        src={img}
-        alt={title}
-        width={400}
-        height={400}
-        className="object-cover w-full h-full"
-      />
-      <div className="absolute bg-black bg-opacity-70 w-full h-[85px] bottom-0 pl-4 pt-4">
-        <p className="text-white text-xl font-semibold">{title}</p>
-        <p className='text-white text-sm text-opacity-70'>{products} Products</p>
-      </div>
-    </div>
-  );
-};

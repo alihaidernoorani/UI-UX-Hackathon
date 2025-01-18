@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaqCard } from '@/app/components/ui/FaqCard';
+import { FaqCard } from '@/app/components/cards/FaqCard';
 
 const Faq = () => {
   return (

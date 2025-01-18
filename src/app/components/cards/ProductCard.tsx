@@ -4,7 +4,7 @@ import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
 
 interface Product {
-    id: number;
+    id: string;
     name: string;
     price: number;
     image: string;

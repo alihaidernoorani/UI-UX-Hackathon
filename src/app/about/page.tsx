@@ -10,8 +10,8 @@ import Sofa from '@/assets/Large-Sofa.png';
 import DandyChair1 from '@/assets/Dandy-Chair-1.png';
 import DandyChair2 from '@/assets/Dandy-Chair-2.png';
 
-import BrandDifferentCard from '../components/ui/BrandDifferentCard';
-import ProductCard from '../components/ui/PopularProductCard';
+import BrandDifferentCard from '../components/cards/BrandDifferentCard';
+import ProductCard from '../components/cards/PopularProductCard';
 
 const About = () => {
   return (

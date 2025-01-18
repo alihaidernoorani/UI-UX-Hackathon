@@ -1,27 +1,51 @@
-import React from 'react';
-import ProductCard from './ui/ProductCard';
-import product1 from '@/assets/Library-Stool-Chair-1.png';
-import product2 from '@/assets/Library-Stool-Chair-2.png';
-import product3 from '@/assets/Library-Stool-Chair-3.png';
-import product4 from '@/assets/Library-Stool-Chair-4.png';
+"use client"
+import React, { useState, useEffect } from 'react';
+import ProductCard from './cards/ProductCard';
+import { client } from '@/sanity/lib/client';
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   price: number;
   image: string;
   onSale: boolean;
   isNew: boolean;
-};
+}
 
-const products: Product[] = [
-  {id: 1, name: 'Library Stool Chair', price: 20, image: product1.src, onSale: false, isNew: true},
-  {id: 2, name: 'Library Stool Chair', price: 20, image: product2.src, onSale: true, isNew: false},
-  {id: 3, name: 'Library Stool Chair', price: 20, image: product3.src, onSale: false, isNew: false},
-  {id: 4, name: 'Library Stool Chair', price: 20, image: product4.src, onSale: false, isNew: false}
-];
+const FeaturedProducts: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
 
-const FeaturedProducts = () => {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      // GROQ query to fetch products with "featured" in their tags
+      const query = `*[_type == "products" && "featured" in tags][0...4]{
+        _id,
+        title,
+        price,
+        "imageUrl": image.asset->url,
+        badge,
+        description,
+        inventory
+      }`;
+
+      const fetchedProducts = await client.fetch(query);
+
+      // Map the fetched data to match the Product interface
+      const formattedProducts = fetchedProducts.map((product: any) => ({
+        id: product._id,
+        name: product.title,
+        price: product.price,
+        image: product.imageUrl,
+        onSale: product.badge === 'On Sale',
+        isNew: product.badge === 'New',
+      }));
+
+      setProducts(formattedProducts);
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <section className="w-[80%] mt-20 mx-auto">
       <h2 className="text-2xl font-bold mb-6">Featured Products</h2>
