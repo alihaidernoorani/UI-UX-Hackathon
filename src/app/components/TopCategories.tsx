@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useState, useEffect } from 'react';
 import { client } from '@/sanity/lib/client';
 import CategoryCard from './cards/CategoryCard';
@@ -14,34 +15,34 @@ const TopCategories: React.FC = () => {
 
   const [products, setProducts] = useState<CategoryCardType[]>([]);
 
-  try{
   useEffect(() => {
     const fetchProducts = async () => {
-      const query = `*[_type == "categories"]
-        {
-          _id,
-          title,
-          "imageUrl": image.asset->url,
-          products
-        }`;
+      try {
+        const query = `*[_type == "categories"]
+          {
+            _id,
+            title,
+            "imageUrl": image.asset->url,
+            products
+          }`;
 
-      const fetchedProducts = await client.fetch(query);
+        const fetchedProducts = await client.fetch(query);
 
-      const formattedProducts = fetchedProducts.map((product: any) => ({
-        id: product._id,
-        title: product.title, 
-        image: product.imageUrl,
-        products: product.products
-      }));
+        const formattedProducts = fetchedProducts.map((product: any) => ({
+          id: product._id,
+          title: product.title, 
+          image: product.imageUrl,
+          products: product.products
+        }));
 
-      setProducts(formattedProducts);
+        setProducts(formattedProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
 
     fetchProducts();
   }, []);
-} catch(error) {
-  console.error("Error fetching products:", error);
-}
 
   return (
     <div className="w-[80%] mx-auto mt-20">

@@ -72,6 +72,7 @@ const OurProducts: React.FC = () => {
     fetchProducts();
   }, []); // Empty dependency array to run only once
 
+  
   const Products = () => (
     <section>
       <div className="w-[80%] mx-auto mt-20">

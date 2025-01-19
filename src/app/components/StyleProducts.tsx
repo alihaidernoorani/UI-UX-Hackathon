@@ -8,39 +8,45 @@ import { client } from "@/sanity/lib/client";
 interface StyleProductType {
   id: string;
   imageUrl: string;
+  slug: string;
 }
 
 const StyleProducts: React.FC = () => {
   const [styleProducts, setStyleProducts] = useState<StyleProductType[]>([]);
 
   // Fetch products with "gallery" tag from Sanity
-  try {
+
   useEffect(() => {
-    const fetchStyleProducts = async () => {
-      const query = `*[_type == "products" && "gallery" in tags][0...5]{
-        _id,
-        "imageUrl": image.asset->url
-      }`;    
+    try {
+      const fetchStyleProducts = async () => {
+        const query = `*[_type == "products" && "gallery" in tags][0...5]{
+          _id,
+          "imageUrl": image.asset->url,
+          slug
+        }`;
+
         const fetchedProducts = await client.fetch(query);
 
         // Map the fetched data to match the interface
         const formattedProducts = fetchedProducts.map((product: any) => ({
           id: product._id,
           imageUrl: product.imageUrl,
+          slug: product.slug,
         }));
 
         setStyleProducts(formattedProducts);
-      } 
-   
+      };
 
-    fetchStyleProducts();
+      fetchStyleProducts();
+    } catch (error) {
+      console.error("Error fetching style products:", error);
+    }
   }, []);
-  } catch (error) {
-    console.error("Error fetching style products:", error);
-  }
+
   // Separate the main image and secondary images
-  const mainImage = styleProducts[0];
-  const secondaryImages = styleProducts.slice(1);
+  const mainImage = styleProducts.find((product) => product.slug === "Citrus-Edge");
+  const secondaryImages = styleProducts.filter((product) => product !== mainImage);
+  console.log(secondaryImages);
 
   return (
     <div className="flex justify-center mt-20">

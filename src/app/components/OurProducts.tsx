@@ -18,10 +18,10 @@ const OurProducts: React.FC = () => {
   const [products, setProducts] = useState<ProductType[]>([]); // State for products
 
   // Fetch products from Sanity
-  try{
   useEffect(() => {
     const fetchProducts = async () => {
       // GROQ query to fetch products
+      try{
       const query = `*[_type == "products"][0...8]{
         _id,
         title,
@@ -43,15 +43,13 @@ const OurProducts: React.FC = () => {
         onSale: product.badge === 'On Sale',
         isNew: product.badge === 'New',
       }));
-  
       setProducts(formattedProducts); // Update state
-    };
-
-    fetchProducts();
+    } catch(error) {
+      console.error("Error fetching products:", error);
+    }
+    }; fetchProducts();
   }, []); // Empty dependency array to run only once
-  } catch(error) {
-    console.error("Error fetching products:", error);
-  }
+  
   // Render products
   return (
     <section className="w-[80%] mx-auto mt-20">
