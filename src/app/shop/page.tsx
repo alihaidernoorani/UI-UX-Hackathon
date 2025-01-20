@@ -1,87 +1,91 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import ProductCard from '../components/cards/ProductCard';
-import Image from 'next/image'; // Import Image component
+import React, { useEffect, useState } from "react";
+import ProductCard from "../components/cards/ProductCard";
+import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 
 // Define the Product interface
 interface ProductType {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  onSale: boolean;
-  isNew: boolean;
+  title: string; // Product title
+  price: number; // Product price
+  image: string; // Image URL
+  badge?: string; // Optional badge for sale or new products
 }
 
 // Define Instagram Product interface
 interface InstagramProductType {
-  id: string;
-  imageUrl: string;
+  image: string; // Instagram product image URL
 }
 
 const OurProducts: React.FC = () => {
-  const [products, setProducts] = useState<ProductType[]>([]); 
-  const [instagramProducts, setInstagramProducts] = useState<InstagramProductType[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]); // State for products
+  const [instagramProducts, setInstagramProducts] = useState<InstagramProductType[]>([]); // State for Instagram products
+  const [loadingProducts, setLoadingProducts] = useState<boolean>(true); // Loading state for products
+  const [loadingInstagram, setLoadingInstagram] = useState<boolean>(true); // Loading state for Instagram products
 
   // Fetch products from Sanity
   useEffect(() => {
     const fetchProducts = async () => {
-      // GROQ query to fetch products
-      const query1 = `*[_type == "products"][0...12]{
-        _id,
-        title,
-        price,
-        badge,
-        "imageUrl": image.asset->url,
-        description
-      }`;
-
-      const query2 = `*[_type == "products" && "instagram" in tags][0...6]{
-        _id,
-        "imageUrl": image.asset->url
-      }`;
-
       try {
-        const fetchedProducts = await client.fetch(query1);
-        const fetchedInstagram = await client.fetch(query2);
+        setLoadingProducts(true); // Start loading for products
+        setLoadingInstagram(true); // Start loading for Instagram products
 
-        // Map the fetched data to match the Product interface
-        const formattedProducts = fetchedProducts.map((product: any) => ({
-          id: product._id,
-          name: product.title,
-          price: product.price,
-          image: product.imageUrl,
-          onSale: product.badge === 'On Sale',
-          isNew: product.badge === 'New',
-        }));
+        // GROQ query to fetch products
+        const query1 = `*[_type == "products"][0...12]{
+          title,
+          price,
+          badge,
+          "image": image.asset->url
+        }`;
 
-        const formattedInstagram = fetchedInstagram.map((insta: any) => ({
-          id: insta._id,
-          imageUrl: insta.imageUrl,
-        }));
+        const query2 = `*[_type == "products" && "instagram" in tags][0...6]{
+          "image": image.asset->url
+        }`;
 
-        setProducts(formattedProducts);
-        setInstagramProducts(formattedInstagram);
+        // Fetch products and Instagram products
+        const [fetchedProducts, fetchedInstagram] = await Promise.all([
+          client.fetch(query1),
+          client.fetch(query2),
+        ]);
+
+        setProducts(fetchedProducts); // Directly use fetched products
+        setInstagramProducts(fetchedInstagram); // Directly use fetched Instagram products
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("Error fetching products or Instagram products:", error);
+      } finally {
+        setLoadingProducts(false); // Stop loading for products
+        setLoadingInstagram(false); // Stop loading for Instagram products
       }
     };
 
     fetchProducts();
-  }, []); // Empty dependency array to run only once
+  }, []);
 
-  
+  // Component to render products
   const Products = () => (
     <section>
+      {/* All Products Section */}
       <div className="w-[80%] mx-auto mt-20">
         <h2 className="text-2xl font-bold mb-6 text-center">All Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {loadingProducts ? ( // Show loading message while fetching products
+          <p className="text-center">Loading products...</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {products.map((product: ProductType, index: number) => (
+              <ProductCard
+                key={index}
+                product={{
+                  name: product.title,
+                  price: product.price,
+                  image: product.image,
+                  onSale: product.badge === "On Sale",
+                  isNew: product.badge === "New",
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Newsletter Section */}
@@ -101,24 +105,26 @@ const OurProducts: React.FC = () => {
         </div>
 
         {/* Instagram Section */}
-        {instagramProducts.length > 0 && (
-          <div className="flex flex-col items-center text-center mx-auto py-20">
-            <h1 className="md:text-xl xl:text-2xl 2xl:text-4xl font-medium mb-10">
-              Follow Products And Discounts on Instagram
-            </h1>
+        <div className="flex flex-col items-center text-center mx-auto py-20">
+          <h1 className="md:text-xl xl:text-2xl 2xl:text-4xl font-medium mb-10">
+            Follow Products And Discounts on Instagram
+          </h1>
+          {loadingInstagram ? ( // Show loading message while fetching Instagram products
+            <p className="text-center">Loading Instagram products...</p>
+          ) : (
             <div className="flex flex-col sm:flex-wrap lg:flex-row gap-2 justify-around">
-              {instagramProducts.map((product) => (
+              {instagramProducts.map((product: InstagramProductType, index: number) => (
                 <Image
-                  key={product.id}
-                  src={product.imageUrl}
+                  key={index}
+                  src={product.image}
                   alt="Instagram Product"
                   width={187}
                   height={187}
                 />
               ))}
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </section>
   );

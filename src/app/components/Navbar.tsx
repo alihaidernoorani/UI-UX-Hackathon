@@ -9,8 +9,10 @@ import Image from "next/image";
 import Logo from "@/assets/Logo.png";
 import { client } from "@/sanity/lib/client";
 
+
+
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [products, setProducts] = useState<any[]>([]);
 
   const toggleMenu = () => {
@@ -21,9 +23,8 @@ const Navbar = () => {
     const fetchProducts = async () => {
       try {
         const query = `*[_type == "products"]{
-          _id,
           "name": title,
-          "slug": slug.current
+          slug
         }`;
         const fetchedProducts = await client.fetch(query);
         setProducts(fetchedProducts);

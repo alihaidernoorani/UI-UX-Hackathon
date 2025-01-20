@@ -1,47 +1,40 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { client } from '@/sanity/lib/client';
-import CategoryCard from './cards/CategoryCard';
+import React, { useState, useEffect } from "react";
+import { client } from "@/sanity/lib/client";
+import CategoryCard from "./cards/CategoryCard";
 
-interface CategoryCardType {
-  id: string;
+// Define an interface for the category type
+interface CategoryType {
   title: string;
-  products: string | number;
   image: string; 
+  products: string | number; 
 }
 
 const TopCategories: React.FC = () => {
-
-  const [products, setProducts] = useState<CategoryCardType[]>([]);
+  const [categories, setCategories] = useState<CategoryType[]>([]); 
+  const [loading, setLoading] = useState<boolean>(true); 
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchCategories = async () => {
       try {
-        const query = `*[_type == "categories"]
-          {
-            _id,
-            title,
-            "imageUrl": image.asset->url,
-            products
-          }`;
+        setLoading(true); 
+        const query = `*[_type == "categories"]{
+          title,
+          "image": image.asset->url,
+          products
+        }`;
 
-        const fetchedProducts = await client.fetch(query);
-
-        const formattedProducts = fetchedProducts.map((product: any) => ({
-          id: product._id,
-          title: product.title, 
-          image: product.imageUrl,
-          products: product.products
-        }));
-
-        setProducts(formattedProducts);
+        const fetchedCategories: CategoryType[] = await client.fetch(query); 
+        setCategories(fetchedCategories);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("Error fetching categories:", error);
+      } finally {
+        setLoading(false); 
       }
     };
 
-    fetchProducts();
+    fetchCategories();
   }, []);
 
   return (
@@ -49,11 +42,20 @@ const TopCategories: React.FC = () => {
       {/* Top Categories Section */}
       <h2 className="text-2xl font-bold mb-6">Top Categories</h2>
       <section className="h-full">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {products.map((category) => (
-            <CategoryCard key={category.id} products={category.products} name={category.title} image={category.image} /> 
-          ))}
-        </div>
+        {loading ? ( 
+          <p>Loading categories...</p>
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {categories.map((category: CategoryType, index: number) => (
+              <CategoryCard
+                key={index}
+                products={category.products}
+                name={category.title}
+                image={category.image} 
+              />
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );
