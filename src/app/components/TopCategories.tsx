@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { client } from "@/sanity/lib/client";
 import CategoryCard from "./cards/CategoryCard";
+import { client } from "../../sanity/lib/client";
 
 // Define an interface for the category type
 interface CategoryType {

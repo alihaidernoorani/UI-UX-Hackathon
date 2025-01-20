@@ -1,17 +1,17 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import ProductCard from "@/app/components/cards/ProductCard";
 import Image from "next/image";
-import { client } from "@/sanity/lib/client";
+import { client } from "../../../sanity/lib/client";
 import { BsCartDash } from "react-icons/bs";
+import FeaturedProductsCard from "@/app/components/cards/FeaturedProductsCard";
 
 interface ProductType {
   title: string;
   price: number;
   image: string;
   slug: string;
-  badge: string;
+  badge?: string;
 }
 
 const ProductPage = ({ params }: { params: { name: string } }) => {
@@ -104,17 +104,15 @@ const ProductPage = ({ params }: { params: { name: string } }) => {
       <h1 className="md:text-xl lg:text-2xl xl:text-3xl font-bold mb-10 text-center md:text-start">
         FEATURED PRODUCTS
       </h1>
-      <div className="flex flex-row flex-wrap gap-4"> {/* Added flex-wrap for wrapping */}
+      <div className="flex flex-row flex-wrap gap-4"> 
         {featuredproducts.map((product: ProductType, index: number) => (
-          <ProductCard
-            key={index}
-            product={{
-              name: product.title,
-              price: product.price,
-              image: product.image,
-              onSale: product.badge === "On Sale", // Determine onSale based on badge
-              isNew: product.badge === "New", // Determine isNew based on badge
-            }}
+          <FeaturedProductsCard
+            key={index}  
+            image={product.image}
+            name={product.title}
+            price={product.price} 
+            onSale= {product.badge === "On Sale"}
+            isNew= {product.badge === "New"}
           />
         ))}
       </div>

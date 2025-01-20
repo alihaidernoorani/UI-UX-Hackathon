@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { client } from "@/sanity/lib/client";
+import { client } from "../../sanity/lib/client";
 
 // Define the interface for products
 interface StyleProductType {
@@ -69,10 +69,7 @@ const StyleProducts: React.FC = () => {
 
         {/* Right Section */}
         <div className="grid grid-cols-2 gap-4 p-4 md:w-1/2">
-          {loading ? ( // Show loading indicator for secondary images
-            <p className="text-center col-span-2">Loading styles...</p>
-          ) : (
-            secondaryImages.map((product: StyleProductType, index: number) => (
+          {secondaryImages.map((product: StyleProductType, index: number) => (
               <Image
                 key={index}
                 src={product.imageUrl}
@@ -81,7 +78,7 @@ const StyleProducts: React.FC = () => {
                 width={250}
                 height={250}
               />
-            ))
+            )
           )}
         </div>
       </div>

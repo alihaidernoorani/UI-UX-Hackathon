@@ -1,19 +1,33 @@
 import React from 'react';
-import Image, {StaticImageData} from 'next/image';
+import Image from 'next/image';
+import Link from 'next/link';
 
-interface PoductCardProps {
-    img: StaticImageData;
-    name: string;
+interface PopularProductCardType {
+  img: string;
+  name: string;
+  price: number;
 }
 
-const PopularProductCard = ({img, name}: PoductCardProps) => {
-    return (
-        <div className='space-y-4'>
-            <Image src={img} alt=''/>
-            <h3>{name}</h3>
-            <span>$99</span>
+const PopularProductCard = ({ img, name, price }: PopularProductCardType) => {
+  return (
+    <Link href={`/product/${name.split(" ").join("-")}`} className="flex flex-col items-center"> 
+       <div className="relative h-[375px]">
+        <Image
+          src={img}
+          alt={name}
+          layout="fill"
+          objectFit="cover"
+          className="rounded-lg"
+          priority
+        />
         </div>
-    )
-}
+        <div className="">
+          <h3>{name}</h3>
+          <span>${price.toFixed(2)}</span> 
+        </div>
+      
+    </Link>
+  );
+};
 
-export default PopularProductCard
+export default PopularProductCard;

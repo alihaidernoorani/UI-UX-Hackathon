@@ -7,7 +7,7 @@ import { BsCartDash } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/assets/Logo.png";
-import { client } from "@/sanity/lib/client";
+import { client } from "../../sanity/lib/client";
 
 
 

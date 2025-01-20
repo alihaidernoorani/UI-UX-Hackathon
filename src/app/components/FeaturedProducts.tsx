@@ -2,15 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import ProductCard from "./cards/ProductCard";
-import { client } from "@/sanity/lib/client";
+import { client } from "../../sanity/lib/client";
 
 // Define an interface for the Product type
 interface ProductType {
-  _id: string;
   title: string;
   price: number;
   image: string;
-  badge: string;
+  badge?: string;
 }
 
 const FeaturedProducts: React.FC = () => {

@@ -59,6 +59,7 @@ export const productSchema = defineType({
             value: "instagram",
           },
           { title: "Gallery", value: "gallery" },
+          { title: "Popular Products", value: "popular" },
         ],
       },
     },

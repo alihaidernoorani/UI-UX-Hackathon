@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import ProductCard from "./cards/ProductCard";
-import { client } from "@/sanity/lib/client";
+import { client } from "../../sanity/lib/client";
 
 // Define the Product interface
 interface ProductType {
