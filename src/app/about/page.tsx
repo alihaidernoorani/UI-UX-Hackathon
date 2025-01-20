@@ -115,6 +115,8 @@ const About: React.FC = () => {
                 img={product.image}
                 name={product.title}
                 price={product.price}
+                onSale= {product.badge === "On Sale"} // Determine onSale based on badge
+                isNew={product.badge === "New"} // Determine isNew based on badge
               />
             ))}
         </div>

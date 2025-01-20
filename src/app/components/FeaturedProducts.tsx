@@ -9,7 +9,7 @@ interface ProductType {
   title: string;
   price: number;
   image: string;
-  badge?: string;
+  badge: string;
 }
 
 const FeaturedProducts: React.FC = () => {

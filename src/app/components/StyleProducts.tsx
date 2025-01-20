@@ -46,24 +46,27 @@ const StyleProducts: React.FC = () => {
       {/* Outer Container */}
       <div className="w-[80%] flex flex-col md:flex-row items-center">
         {/* Left Section */}
+        {/* Left Section */}
         <div className="flex-none w-full md:w-1/2 p-4 relative">
-          {/* Vertical Rotated Text */}
-          <div className="absolute md:-rotate-90 md:left-[-190px] left-8 top-1 md:top-1/2 text-center transform -translate-y-1/2 text-[10px] md:text-lg lg:text-xl font-semibold">
-            EXPLORE NEW AND POPULAR STYLES
-          </div>
           {loading ? ( // Show loading indicator while fetching data
             <p className="text-center">Loading styles...</p>
           ) : (
-            mainImage && (
-              <Image
-                src={mainImage.imageUrl}
-                alt="Main Style"
-                className="w-full h-auto"
-                priority
-                width={500}
-                height={500}
-              />
-            )
+            <>
+              {/* Vertical Rotated Text */}
+              <div className="absolute md:-rotate-90 md:left-[-190px] left-8 top-1 md:top-1/2 text-center transform -translate-y-1/2 text-[10px] md:text-lg lg:text-xl font-semibold">
+                EXPLORE NEW AND POPULAR STYLES
+              </div>
+              {mainImage && (
+                <Image
+                  src={mainImage.imageUrl}
+                  alt="Main Style"
+                  className="w-full h-auto"
+                  priority
+                  width={500}
+                  height={500}
+                />
+              )}
+            </>
           )}
         </div>
 
