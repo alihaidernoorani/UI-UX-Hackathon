@@ -9,9 +9,7 @@ import Image from "next/image";
 import Logo from "@/assets/Logo.png";
 import { client } from "../../sanity/lib/client";
 
-
-
-const Navbar = () => {
+const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [products, setProducts] = useState<any[]>([]);
 
@@ -37,7 +35,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="w-full">
+    <header className="w-full">
       {/* Top Header */}
       <div className="bg-[#272343] flex justify-center w-full h-[45px]">
         <div className="flex justify-between items-center w-full md:w-[80%] h-full text-white text-xs px-2">
@@ -76,7 +74,7 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
-      <div className="relative bg-white w-full h-[74px] flex justify-center border-b">
+      <nav className="relative bg-white w-full h-[74px] flex justify-center border-b">
         <div className="flex justify-between items-center w-full md:w-[80%] h-full px-2">
           {/* Desktop Menu */}
           <ul className="hidden md:flex gap-8 items-center text-sm">
@@ -132,11 +130,12 @@ const Navbar = () => {
           >
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
-        </div>
+          </div>
+        </nav>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="absolute top-[74px] w-full bg-white shadow-lg p-4 md:hidden">
+          <nav className="absolute top-[74px] w-full bg-white shadow-lg p-4 md:hidden">
             <ul className="flex flex-col gap-4">
               <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
                 <Link href="/">Home</Link>
@@ -187,11 +186,10 @@ const Navbar = () => {
                 Contact: <span className="font-medium">(808) 555-0111</span>
               </li>
             </ul>
-          </div>
+          </nav>
         )}
-      </div>
-    </div>
+    </header>
   );
 };
 
-export default Navbar;
+export default Header;

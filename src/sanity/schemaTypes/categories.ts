@@ -5,20 +5,8 @@ export const categorySchema = defineType({
     title: 'Categories',
     type: 'document',
     fields: [
-        {
-            name: 'title',
-            title: 'Category Title',
-            type: 'string',
-        },
-        {
-            name: 'image',
-            title: 'Category Image',
-            type: 'image',
-        },
-        {
-            title: 'Number of Products',
-            name: 'products',
-            type: 'number',
-        }
+        { name: 'title', title: 'Category Title', type: 'string' },
+        { name: 'image', title: 'Category Image', type: 'image' },
+        { name: 'products', title: 'Number of Products', type: 'number' }
     ],
 });

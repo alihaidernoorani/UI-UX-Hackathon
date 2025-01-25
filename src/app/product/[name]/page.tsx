@@ -6,64 +6,52 @@ import { client } from "../../../sanity/lib/client";
 import { BsCartDash } from "react-icons/bs";
 import FeaturedProductsCard from "@/app/components/cards/FeaturedProductsCard";
 
-interface ProductType {
-  title: string;
-  price: number;
-  image: string;
-  slug: string;
-  badge?: string;
-}
-
 const ProductPage = ({ params }: { params: { name: string } }) => {
-  const [products, setProducts] = useState<ProductType[]>([]); 
-  const [featuredproducts, setFeaturedProducts] = useState<ProductType[]>([]);
-  const [loading, setLoading] = useState<boolean>(true); 
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [featuredProducts, setFeaturedProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true); // Start loading
         // GROQ query to fetch all products
         const query1 = `*[_type == "products"]{
-          title,
-          price,
-          "image": image.asset->url,
-          slug
-        }`;
+              "id":_id, 
+              "name": title,
+              price,
+              "onSale": badge == "Sales",
+              "isNew": badge == "New",
+              "image": image.asset->url
+            }`;
 
         const query2 = `*[_type == "products" && "featured" in tags][0...5]{
-          title,
-          price,
-          "image": image.asset->url,
-          badge
-        }`;
+              "id":_id, 
+              "name": title,
+              price,
+              "onSale": badge == "Sales",
+              "isNew": badge == "New",
+              "image": image.asset->url
+            }`;
 
-       const [fetchedProducts, fetchedFeaturedProducts] = await Promise.all([
-                 client.fetch(query1),
-                 client.fetch(query2),
-               ]);
+        const [fetchedProducts, fetchedFeaturedProducts] = await Promise.all([
+          client.fetch(query1),
+          client.fetch(query2),
+        ]);
 
         setProducts(fetchedProducts);
         setFeaturedProducts(fetchedFeaturedProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false); // Stop loading
       }
     };
 
     fetchProducts();
   }, []);
 
-  if (loading) {
-    return <div className="text-center mt-20">Loading...</div>; // Display a loading message while data is being fetched
-  }
-
   // Find the specific product based on the slug from the URL params
-  const product = products.find((p) => p.slug === params.name);
+  const product = products.find((p) => p.name.split(' ').join('-') === params.name);
 
   if (!product) {
-    return <div className="text-center mt-20">Product not found</div>; // Handle cases where the product is not found
+    return <div className="text-center mt-20">Product not found</div>;
   }
 
   return (
@@ -74,7 +62,7 @@ const ProductPage = ({ params }: { params: { name: string } }) => {
         <div>
           <Image
             src={product.image}
-            alt={product.title}
+            alt={product.name}
             width={300}
             height={300}
             objectFit="contain"
@@ -83,7 +71,7 @@ const ProductPage = ({ params }: { params: { name: string } }) => {
         {/* Product Details */}
         <div className="text-center md:text-start space-y-4">
           <h1 className="text-xl lg:text-2xl xl:text-4xl 2xl:text-6xl font-bold mb-4">
-            {product.title}
+            {product.name}
           </h1>
           <span className="bg-[#029FAE] text-white rounded-full p-2">{`$${product.price.toLocaleString()}.00 USD`}</span>
           <hr />
@@ -98,27 +86,26 @@ const ProductPage = ({ params }: { params: { name: string } }) => {
           </button>
         </div>
       </div>
-
       {/* Featured Products Section */}
       <div className="mt-20">
-      <h1 className="md:text-xl lg:text-2xl xl:text-3xl font-bold mb-10 text-center md:text-start">
-        FEATURED PRODUCTS
-      </h1>
-      <div className="flex flex-row flex-wrap gap-4"> 
-        {featuredproducts.map((product: ProductType, index: number) => (
-          <FeaturedProductsCard
-            key={index}  
-            image={product.image}
-            name={product.title}
-            price={product.price} 
-            onSale= {product.badge === "On Sale"}
-            isNew= {product.badge === "New"}
-          />
-        ))}
+        <h1 className="md:text-xl lg:text-2xl xl:text-3xl font-bold mb-10 text-center md:text-start">
+          FEATURED PRODUCTS
+        </h1>
+        <div className="flex flex-row flex-wrap gap-4">
+          {featuredProducts.map((product: ProductType) => (
+            <FeaturedProductsCard
+              key={product.id}
+              image={product.image}
+              name={product.name}
+              price={product.price}
+              onSale={product.onSale}
+              isNew={product.isNew}
+            />
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default ProductPage;
