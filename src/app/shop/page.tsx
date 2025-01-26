@@ -6,11 +6,14 @@ import Subscribe from '../components/shop/Subscribe';
 import SearchFilter from '../components/shop/SearchFilter';
 import Pagination from '../components/shop/Pagination';
 import { client } from '@/sanity/lib/client';
+import Categories from '../components/shop/Categories';
+
 
 const Shop = () => {
-
   const [products, setProducts] = useState<ProductType[]>([]);
   const [instagramProducts, setInstagramProducts] = useState<ProductType[]>([]);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [filter, setFilter] = useState('all');
   const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
@@ -26,7 +29,8 @@ const Shop = () => {
           price,
           "onSale": badge == "Sales",
           "isNew": badge == "New",
-          "image": image.asset->url
+          "image": image.asset->url,
+          "category": category->title
         }`;
 
         const query2 = `*[_type == "products" && "instagram" in tags][0...6]{
@@ -34,14 +38,21 @@ const Shop = () => {
           "image": image.asset->url
         }`;
 
+        const query3 = `*[_type == "categories"]{
+          "id": _id,
+          "name": title
+        }`;
+
         const fetchedProducts = await client.fetch(query1);
         const fetchedInstagramProducts = await client.fetch(query2);
+        const fetchedCategories = await client.fetch(query3);
 
         setProducts(fetchedProducts);
         setFilteredProducts(fetchedProducts);
         setInstagramProducts(fetchedInstagramProducts);
+        setCategories(fetchedCategories);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error('Error fetching products:', error);
       }
     };
 
@@ -64,23 +75,29 @@ const Shop = () => {
         updatedProducts = updatedProducts.filter(product => product.isNew);
       }
 
+      if (selectedCategory) {
+        updatedProducts = updatedProducts.filter(
+          product => product.category === selectedCategory
+        );
+      }
+
       setFilteredProducts(updatedProducts);
       setCurrentPage(1); // Reset to first page on filter change
     };
 
     applyFilters();
-  }, [searchQuery, filter, products]);
+  }, [searchQuery, filter, selectedCategory, products]);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  interface PageChangeHandler {
-    (pageNumber: number): void;
-  }
-
-  const handlePageChange: PageChangeHandler = (pageNumber) => {
+  const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
+  };
+
+  const handleCategorySelect = (category: string | null) => {
+    setSelectedCategory(category);
   };
 
   return (
@@ -90,6 +107,11 @@ const Shop = () => {
         setSearchQuery={setSearchQuery}
         filter={filter}
         setFilter={setFilter}
+      />
+      <Categories
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onCategorySelect={handleCategorySelect}
       />
       <ProductListing products={currentProducts} />
       <Pagination

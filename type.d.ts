@@ -3,17 +3,17 @@ interface InstagramProductType {
   image: string;
   }
   
-interface ProductType {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  onSale: boolean;
-  isNew: boolean;
-}
-
-interface CategoryType {
-  title: string;
-  image: string; 
-  products: number; 
-}
+  interface ProductType {
+    id: string;
+    name: string;
+    price: number;
+    onSale: boolean;
+    isNew: boolean;
+    image: string;
+    category?: string;
+  }
+  
+  interface CategoryType {
+    id: string;
+    name: string;
+  }
