@@ -1,10 +1,10 @@
 "use client"
 
-import Hero from "./components/(home)/Hero";
-import FeaturedProducts from "./components/(home)/FeaturedProducts";
-import TopCategories from "./components/(home)/TopCategories";
-import StyleProducts from "./components/(home)/StyleProducts";
-import OurProducts from "./components/(home)/OurProducts";
+import Hero from "./components/home/Hero";
+import FeaturedProducts from "./components/home/FeaturedProducts";
+import TopCategories from "./components/home/TopCategories";
+import StyleProducts from "./components/home/StyleProducts";
+import OurProducts from "./components/home/OurProducts";
 import { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 
@@ -31,13 +31,9 @@ export default function Home() {
         const query2 = `*[_type == "categories"]{
           "id": _id, 
           "title": title,
-          "products": products[]->{
-            "id": _id,
-            "name": title,
-            price,
-            "image": image.asset->url
-          },
-          "image": image.asset->url
+          price,
+          "image": image.asset->url,
+          products
         }`;
 
         const query3 = `*[_type == "products" && "gallery" in tags][0...5]{
@@ -82,7 +78,7 @@ export default function Home() {
   }
 
   if (error) {
-    return <div className="text-red-500 mx-auto">{error}</div>;
+    return <div className="flex items-center justify-center text-center text-red-500 mx-auto">{error}</div>;
   }
 
   return (
