@@ -14,6 +14,8 @@ const OurProducts: React.FC<OurProductsProps> = ({ products }) => {
             <ProductCard
               key={index}
               product={{
+                id: product.id,
+                slug: product.slug,
                 name: product.name,
                 price: product.price,
                 image: product.image,
