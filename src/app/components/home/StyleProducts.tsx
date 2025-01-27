@@ -7,9 +7,7 @@ interface StyleProductsProps {
 
 const StyleProducts: React.FC<StyleProductsProps> = ({ products }) => {
   // Separate the main image and secondary images
-  const mainImage = products.find(
-    (product) => product.name && product.name.split(' ').join('-') === "Citrus-Edge"
-  );
+  const mainImage = products.find((product) => product.slug === 1);
    const secondaryImages = products.filter((product) => product !== mainImage);
 
   return (

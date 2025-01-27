@@ -25,21 +25,23 @@ export default function Home() {
           price,
           "onSale": badge == "Sales",
           "isNew": badge == "New",
-          "image": image.asset->url
+          "image": image.asset->url,
+          slug
         }`;
 
         const query2 = `*[_type == "categories"]{
           "id": _id, 
-          "title": title,
+          "name": title,
           price,
           "image": image.asset->url,
-          products
+          products,
         }`;
 
         const query3 = `*[_type == "products" && "gallery" in tags][0...5]{
           "id": _id,
           "name": title,
-          "image": image.asset->url
+          "image": image.asset->url,
+          slug
         }`;
 
         const query4 = `*[_type == "products"][0...8]{
@@ -48,7 +50,8 @@ export default function Home() {
           price,
           "onSale": badge == "Sales",
           "isNew": badge == "New",
-          "image": image.asset->url
+          "image": image.asset->url,
+          slug
         }`;
 
         const [featured, categories, styles, allProducts] = await Promise.all([
@@ -74,7 +77,7 @@ export default function Home() {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center">Loading...</div>;
   }
 
   if (error) {

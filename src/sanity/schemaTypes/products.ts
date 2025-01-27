@@ -35,7 +35,7 @@ export const productSchema = defineType({
     {
       name: "slug",
       title: "Slug",
-      type: "string"
-    }
+      type: "number"
+    },
   ],
 });

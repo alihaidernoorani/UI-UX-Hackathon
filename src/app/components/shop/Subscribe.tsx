@@ -28,7 +28,7 @@ const Subscribe = ({ instagramProducts }: { instagramProducts: InstagramProductT
         <h1 className="md:text-xl xl:text-2xl 2xl:text-4xl font-medium mb-10">
           Follow Products And Discounts on Instagram
         </h1>
-        <div className='flex justify-center items-center gap-4'>
+        <div className='flex flex-col flex-wrap md:flex-row justify-center items-center gap-4'>
              {instagramProducts.map((product: InstagramProductType) => (
               <Image
                 key={product.id}

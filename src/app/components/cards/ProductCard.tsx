@@ -2,18 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
 
-interface Product {
-  name: string;
-  price: number;
-  image: string;
-  onSale: boolean;
-  isNew: boolean;
-}
-
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({ product }: { product: ProductType }) => {
   return (
     <div className="rounded-md overflow-hidden relative shadow-md transition-transform transform hover:scale-105 bg-white">
-      <Link href={`/product/${product.name.split(" ").join("-")}`}>
+      <Link href={`/product/${product.slug}`}>
         <div className="relative w-full h-[230px] overflow-hidden rounded-md">
           {product.isNew && (
             <div className="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded-sm text-sm font-semibold">
@@ -21,7 +13,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             </div>
           )}
           {product.onSale && (
-            <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-sm text-sm font-semibold">
+            <div className="absolute top-2 left-2 bg-orange-500 text-white px-2 py-1 rounded-sm text-sm font-semibold">
               Sale
             </div>
           )}

@@ -84,20 +84,8 @@ const Header = () => {
             <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
               <Link href="/shop">Shop</Link>
             </li>
-            <li className="relative group">
-              Product
-              <ul className="absolute z-10 hidden group-hover:inline-block left-0 top-full bg-white text-nowrap p-2 space-y-2 rounded-md shadow-md">
-                {products.map((product) => (
-                  <li
-                    key={product._id}
-                    className="hover:text-[#029FAE] hover:font-bold transition-colors"
-                  >
-                    <Link href={`/product/${product.slug}`}>
-                      {product.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
+            <Link href={`/product/1`}>Product</Link>
             </li>
             <li className="relative group">
               Pages
@@ -143,20 +131,8 @@ const Header = () => {
               <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
                 <Link href="/shop">Shop</Link>
               </li>
-              <li className="relative">
-                Product
-                <ul className="mt-2 pl-4 space-y-2">
-                  {products.map((product) => (
-                    <li key={product._id}>
-                      <Link
-                        href={`/product/${product.slug}`}
-                        className="hover:text-[#029FAE] hover:font-bold"
-                      >
-                        {product.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+              <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
+                <Link href={`/product/1`}>Product</Link>
               </li>
               <li className="relative">
                 Pages

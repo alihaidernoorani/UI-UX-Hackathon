@@ -10,7 +10,9 @@ interface InstagramProductType {
     onSale: boolean;
     isNew: boolean;
     image: string;
+    description?: string;
     category?: string;
+    slug: number;
   }
   
   interface CategoryType {
