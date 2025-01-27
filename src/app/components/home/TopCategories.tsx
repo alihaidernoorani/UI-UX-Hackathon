@@ -12,7 +12,7 @@ const TopCategories: React.FC<{ categories: CategoryType[] }> = ({ categories })
               <CategoryCard
                 key={index}
                 products={category.products}
-                name={category.title}
+                name={category.name}
                 image={category.image} 
               />
             ))}

@@ -16,4 +16,6 @@ interface InstagramProductType {
   interface CategoryType {
     id: string;
     name: string;
+    image: string;
+    products: string;
   }
