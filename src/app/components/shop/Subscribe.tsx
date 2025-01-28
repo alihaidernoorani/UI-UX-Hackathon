@@ -1,6 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 
+type InstagramProductType = {
+  id: string;
+  image: string;
+}
+
 const Subscribe = ({ instagramProducts }: { instagramProducts: InstagramProductType[] }) => {
   return (
     <div>

@@ -1,6 +1,16 @@
 import React from "react";
 import ProductCard from "../cards/ProductCard";
 
+interface ProductType {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  slug: number;
+  isNew?: boolean;
+  onSale?: boolean;
+};
+
 interface ProductListingProps {
   products: ProductType[];
 }

@@ -16,7 +16,7 @@ interface ProductType {
   isNew: boolean;
   image: string;
   category: string;
-  slug: string;
+  slug: number;
 }
 
 interface CategoryType {

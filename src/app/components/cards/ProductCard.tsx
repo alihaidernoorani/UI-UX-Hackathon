@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
 
-type ProductType = {
+interface ProductType {
   id: string;
   name: string;
   price: number;
   image: string;
-  slug: string;
+  slug: number;
   isNew?: boolean;
   onSale?: boolean;
 };

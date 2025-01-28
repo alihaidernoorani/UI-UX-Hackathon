@@ -8,7 +8,7 @@ interface ProductType {
   image: string;
   onSale: boolean;
   isNew: boolean;
-  slug: string;
+  slug: number;
 };
 
 interface OurProductsProps {
