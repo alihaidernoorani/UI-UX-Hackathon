@@ -12,6 +12,7 @@ interface InstagramProductType {
     image: string;
     description?: string;
     category?: string;
+    inventory?: number;
     slug: number;
   }
   
@@ -21,3 +22,21 @@ interface InstagramProductType {
     image: string;
     products: string;
   }
+
+
+// For CartContext.tsx
+ type CartItem = {
+   id: string;
+   name: string;
+   price: number;
+   quantity: number;
+   image: string;
+ };
+ 
+ type CartContextType = {
+  cart: CartItem[];
+  cartItems: CartItem[]; // Add this line
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
+};

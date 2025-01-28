@@ -30,7 +30,8 @@ const Shop = () => {
           "onSale": badge == "Sales",
           "isNew": badge == "New",
           "image": image.asset->url,
-          "category": category->title
+          "category": category->title,
+          slug
         }`;
 
         const query2 = `*[_type == "products" && "instagram" in tags][0...6]{

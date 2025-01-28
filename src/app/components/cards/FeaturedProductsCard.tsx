@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const FeaturedProductsCard = (product: ProductType) => {
   return (
-    <div className='relative shadow-md transition-transform transform hover:scale-105 bg-white rounded-lg flex flex-col items-start space-y-4 w-full mx-auto md:w-1/6 mb-20'>
+    <div className='relative shadow-md transition-transform transform hover:scale-105 bg-white rounded-lg flex flex-col items-start space-y-4 mx-auto md:w-1/6 mb-20'>
       <div>
         <Link href={`/product/${product.slug}`}>
           {product.isNew && (

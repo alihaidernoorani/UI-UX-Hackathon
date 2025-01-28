@@ -8,10 +8,12 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/assets/Logo.png";
 import { client } from "../../sanity/lib/client";
+import { useCart } from "@/app/cart/context/CartContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [products, setProducts] = useState<any[]>([]);
+  const { cartItems } = useCart(); // Access cart state from CartContext
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -33,6 +35,9 @@ const Header = () => {
 
     fetchProducts();
   }, []);
+
+  // Calculate total items in the cart
+  const totalItems = cartItems?.reduce((sum, item) => sum + item.quantity, 0) || 0;
 
   return (
     <header className="w-full">
@@ -66,10 +71,20 @@ const Header = () => {
           <Link href="/">
             <Image src={Logo} alt="Logo" width={150} height={50} />
           </Link>
-          <button className="bg-white text-xs px-4 py-2 rounded-sm flex items-center gap-2 shadow hover:shadow-lg">
-            <BsCartDash />
-            Cart
-          </button>
+
+          <Link href={`/cart`}>
+            <button className="relative flex gap-2 items-center justify-center bg-white text-xs font-medium rounded-md px-4 py-2 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <span className="flex items-center gap-2">
+                <BsCartDash />
+                <span>Cart</span>
+              </span>
+              {totalItems > 0 && (
+                <span className="inline-flex items-center justify-center rounded-full h-5 w-5 bg-green-800 text-white text-xs">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -85,7 +100,7 @@ const Header = () => {
               <Link href="/shop">Shop</Link>
             </li>
             <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
-            <Link href={`/product/1`}>Product</Link>
+              <Link href={`/product/1`}>Product</Link>
             </li>
             <li className="relative group">
               Pages
@@ -102,7 +117,7 @@ const Header = () => {
               <Link href="/about">About</Link>
             </li>
           </ul>
-          
+
           {/* Contact Information */}
           <div className="hidden md:block text-sm">
             <span>
@@ -118,52 +133,52 @@ const Header = () => {
           >
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
-          </div>
-        </nav>
+        </div>
+      </nav>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <nav className="z-20 absolute top-[74px] w-full bg-white shadow-lg p-4 md:hidden">
-            <ul className="flex flex-col gap-4">
-              <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
-                <Link href="/">Home</Link>
-              </li>
-              <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
-                <Link href="/shop">Shop</Link>
-              </li>
-              <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
-                <Link href={`/product/1`}>Product</Link>
-              </li>
-              <li className="relative">
-                Pages
-                <ul className="mt-2 pl-4 space-y-2">
-                  <li>
-                    <Link
-                      href="/pages/contact"
-                      className="hover:text-[#029FAE] hover:font-bold"
-                    >
-                      Contact Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/pages/faq"
-                      className="hover:text-[#029FAE] hover:font-bold"
-                    >
-                      FAQ
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
-                <Link href="/about">About</Link>
-              </li>
-              <li className="mt-4 border-t pt-4 text-sm">
-                Contact: <span className="font-medium">(808) 555-0111</span>
-              </li>
-            </ul>
-          </nav>
-        )}
+      {/* Mobile Menu */}
+      {isOpen && (
+        <nav className="z-20 absolute top-[74px] w-full bg-white shadow-lg p-4 md:hidden">
+          <ul className="flex flex-col gap-4">
+            <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
+              <Link href="/">Home</Link>
+            </li>
+            <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
+              <Link href="/shop">Shop</Link>
+            </li>
+            <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
+              <Link href={`/product/1`}>Product</Link>
+            </li>
+            <li className="relative">
+              Pages
+              <ul className="mt-2 pl-4 space-y-2">
+                <li>
+                  <Link
+                    href="/pages/contact"
+                    className="hover:text-[#029FAE] hover:font-bold"
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/pages/faq"
+                    className="hover:text-[#029FAE] hover:font-bold"
+                  >
+                    FAQ
+                  </Link>
+                </li>
+              </ul>
+            </li>
+            <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
+              <Link href="/about">About</Link>
+            </li>
+            <li className="mt-4 border-t pt-4 text-sm">
+              Contact: <span className="font-medium">(808) 555-0111</span>
+            </li>
+          </ul>
+        </nav>
+      )}
     </header>
   );
 };

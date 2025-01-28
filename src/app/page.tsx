@@ -35,6 +35,7 @@ export default function Home() {
           price,
           "image": image.asset->url,
           products,
+          slug
         }`;
 
         const query3 = `*[_type == "products" && "gallery" in tags][0...5]{
