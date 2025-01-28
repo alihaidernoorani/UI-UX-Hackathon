@@ -3,12 +3,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 interface ProductType {
-  slug: string;
+  id: string;
+  name: string;
+  price: number;
   isNew: boolean;
   onSale: boolean;
   image: string;
-  name: string;
-  price: number;
+  slug: number;
 };
 
 const FeaturedProductsCard = (product: ProductType) => {
