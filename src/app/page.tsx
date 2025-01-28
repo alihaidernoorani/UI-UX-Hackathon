@@ -11,20 +11,21 @@ interface ProductType {
   id: string;
   name: string;
   price: number;
-  onSale: boolean;
-  isNew: boolean;
   image: string;
-  slug: number;
-}
+  slug: number; 
+  isNew: boolean;
+  onSale: boolean;
+};
 
 interface CategoryType {
   id: string;
   name: string;
   price: number;
   image: string;
-  products: string[];
-  slug: number;
+  products: string[]; 
+  slug: number; 
 }
+
 import { client } from "@/sanity/lib/client";
 
 export default function Home() {

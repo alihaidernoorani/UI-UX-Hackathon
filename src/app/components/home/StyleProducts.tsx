@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 interface ProductType {
-  id: number;
+  id: string;
   name: string;
   image: string;
   slug: number;
