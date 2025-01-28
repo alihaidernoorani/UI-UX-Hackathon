@@ -6,6 +6,25 @@ import TopCategories from "./components/home/TopCategories";
 import StyleProducts from "./components/home/StyleProducts";
 import OurProducts from "./components/home/OurProducts";
 import { useEffect, useState } from "react";
+
+interface ProductType {
+  id: string;
+  name: string;
+  price: number;
+  onSale: boolean;
+  isNew: boolean;
+  image: string;
+  slug: number;
+}
+
+interface CategoryType {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  products: string[];
+  slug: number;
+}
 import { client } from "@/sanity/lib/client";
 
 export default function Home() {

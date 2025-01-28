@@ -1,6 +1,16 @@
 import React from "react";
 import ProductCard from "../cards/ProductCard";
 
+interface ProductType {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  onSale: boolean;
+  isNew: boolean;
+  slug: string;
+};
+
 const FeaturedProducts: React.FC<{ products: ProductType[] }> = ({ products }) => {
   return (
     <section className="w-[80%] mt-20 mx-auto">

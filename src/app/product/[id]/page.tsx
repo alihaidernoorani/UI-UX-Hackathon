@@ -5,11 +5,24 @@ import Image from "next/image";
 import { client } from "../../../sanity/lib/client";
 import { BsCartDash } from "react-icons/bs";
 import FeaturedProductsCard from "@/app/components/cards/FeaturedProductsCard";
+import { useCart } from "@/app/cart/context/CartContext";
+
+interface ProductType {
+  id: string;
+  name: string;
+  price: number;
+  onSale: boolean;
+  isNew: boolean;
+  image: string;
+  description?: string;
+  slug: number;
+}
 
 const ProductPage = ({ params }: { params: { id: number } }) => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [featuredProducts, setFeaturedProducts] = useState<ProductType[]>([]);
   const [showAll, setShowAll] = useState(false); // State to toggle view
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -60,7 +73,7 @@ const ProductPage = ({ params }: { params: { id: number } }) => {
     return <div className="text-center mt-20">Product not found</div>;
   }
 
-  const { name, price, description, image } = product;
+  const { id, name, price, description, image } = product;
 
   // Determine the products to display in the featured section
   const displayedFeaturedProducts = showAll
@@ -86,7 +99,10 @@ const ProductPage = ({ params }: { params: { id: number } }) => {
           <span className="bg-[#029FAE] text-white rounded-full p-2">{`$${price.toLocaleString()}.00 USD`}</span>
           <hr />
           <p>{description}</p>
-          <button className="bg-[#029FAE] text-white px-6 py-3 rounded-lg">
+          <button
+            className="bg-[#029FAE] text-white px-6 py-3 rounded-lg"
+            onClick={() => addToCart({ ...product, quantity: 1 })}
+          >
             <BsCartDash className="inline mr-2 text-xl" />
             Add To Cart
           </button>

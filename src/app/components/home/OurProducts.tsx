@@ -1,9 +1,19 @@
 import React from "react";
 import ProductCard from "../cards/ProductCard";
 
+interface ProductType {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  onSale: boolean;
+  isNew: boolean;
+  slug: string;
+};
+
 interface OurProductsProps {
   products: ProductType[];
-}
+};
 
 const OurProducts: React.FC<OurProductsProps> = ({ products }) => {
   return (

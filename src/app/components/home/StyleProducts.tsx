@@ -1,6 +1,13 @@
 import React from "react";
 import Image from "next/image";
 
+interface ProductType {
+  id: number;
+  name: string;
+  image: string;
+  slug: number;
+}
+
 interface StyleProductsProps {
   products: ProductType[];
 }

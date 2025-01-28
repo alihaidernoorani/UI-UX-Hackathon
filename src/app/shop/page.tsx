@@ -8,6 +8,22 @@ import Pagination from '../components/shop/Pagination';
 import { client } from '@/sanity/lib/client';
 import Categories from '../components/shop/Categories';
 
+interface ProductType {
+  id: string;
+  name: string;
+  price: number;
+  onSale: boolean;
+  isNew: boolean;
+  image: string;
+  category: string;
+  slug: string;
+}
+
+interface CategoryType {
+  id: string;
+  name: string;
+}
+
 
 const Shop = () => {
   const [products, setProducts] = useState<ProductType[]>([]);

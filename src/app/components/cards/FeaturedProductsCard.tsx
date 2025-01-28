@@ -2,6 +2,15 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+interface ProductType {
+  slug: string;
+  isNew: boolean;
+  onSale: boolean;
+  image: string;
+  name: string;
+  price: number;
+};
+
 const FeaturedProductsCard = (product: ProductType) => {
   return (
     <div className='relative shadow-md transition-transform transform hover:scale-105 bg-white rounded-lg flex flex-col items-start space-y-4 mx-auto md:w-1/6 mb-20'>

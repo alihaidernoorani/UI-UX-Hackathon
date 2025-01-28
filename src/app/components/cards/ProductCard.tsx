@@ -1,6 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
+
+type ProductType = {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  slug: string;
+  isNew?: boolean;
+  onSale?: boolean;
+};
+
 import { useCart } from "@/app/cart/context/CartContext";
 
 const ProductCard = ({ product }: { product: ProductType }) => {
@@ -17,7 +28,6 @@ const ProductCard = ({ product }: { product: ProductType }) => {
         quantity: 1,
       });
 
-      // Optional: Display a success message with timeout
     const alertMessage = `${product.name} has been added to the cart!`;
     const timeout = 1000; // Adjust timeout duration in milliseconds (1 second)
     const timer = setTimeout(() => {

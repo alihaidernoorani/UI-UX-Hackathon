@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 interface CategoryCardType {
   name: string;
-  products: string | number;
+  products: (string | number)[];
   image: string; 
 }
 

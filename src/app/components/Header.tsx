@@ -37,7 +37,17 @@ const Header = () => {
   }, []);
 
   // Calculate total items in the cart
-  const totalItems = cartItems?.reduce((sum, item) => sum + item.quantity, 0) || 0;
+  interface Product {
+    name: string;
+    slug: string;
+  }
+
+  interface CartItem {
+    id: string;
+    quantity: number;
+  }
+
+  const totalItems: number = cartItems?.reduce((sum: number, item: CartItem) => sum + item.quantity, 0) || 0;
 
   return (
     <header className="w-full">

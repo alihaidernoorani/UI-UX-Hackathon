@@ -1,6 +1,12 @@
 import React from "react";
 import CategoryCard from "../cards/CategoryCard";
 
+interface CategoryType {
+  name: string;
+  image: string;
+  products: (string | number)[];
+};
+
 const TopCategories: React.FC<{ categories: CategoryType[] }> = ({ categories }) => {
   return (
     <div className="w-[80%] mx-auto mt-20">

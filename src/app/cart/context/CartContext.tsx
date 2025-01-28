@@ -2,6 +2,24 @@
 
 import { createContext, ReactNode, useContext, useState } from "react";
 
+// Define CartItem type
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string; 
+};
+
+// Define CartContextType
+interface CartContextType {
+  cart: CartItem[];
+  cartItems: CartItem[];
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
+};
+
 // Create Cart context
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
