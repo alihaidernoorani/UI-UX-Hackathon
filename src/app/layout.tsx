@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Navbar from "./components/Header";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 import { CartProvider } from "./cart/context/CartContext";
+import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+            
       <body className={inter.className}>
         <CartProvider>
-      <Navbar/>
+      <Header/>
+      <Toaster/>
         {children}
       <Footer/>
-      </CartProvider>
+        </CartProvider>
       </body>
     </html>
+
   );
 }

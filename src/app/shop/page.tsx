@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import ProductListing from '../components/shop/ProductListing';
 import Subscribe from '../components/shop/Subscribe';
-import SearchFilter from '../components/shop/SearchFilter';
-import Pagination from '../components/shop/Pagination';
+import SearchFilter from '../components/SearchFilter';
+import Pagination from '../components/Pagination';
 import { client } from '@/sanity/lib/client';
-import Categories from '../components/shop/Categories';
+import Categories from '../components/Categories';
 
 interface ProductType {
   id: string;

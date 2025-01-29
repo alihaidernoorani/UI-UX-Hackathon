@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BsCartDash } from "react-icons/bs";
+import toast from 'react-hot-toast';
 
 interface ProductType {
   id: string;
@@ -28,18 +29,13 @@ const ProductCard = ({ product }: { product: ProductType }) => {
         quantity: 1,
       });
 
-    const alertMessage = `${product.name} has been added to the cart!`;
-    const timeout = 1000; // Adjust timeout duration in milliseconds (1 second)
-    const timer = setTimeout(() => {
-      alert(alertMessage);
-    }, timeout);
-
-    // Clear the timeout when the component unmounts to prevent memory leaks
-    return () => clearTimeout(timer);
+      toast(`${product.name} has been added to the cart!`); 
     } else {
       console.error("addToCart function is not available");
+      toast.error("Error adding to cart. Please try again."); 
     }
   };
+
 
   return (
     <div className="rounded-md overflow-hidden relative shadow-md transition-transform transform hover:scale-105 bg-white">

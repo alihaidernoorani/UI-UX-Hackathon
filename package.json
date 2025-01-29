@@ -10,6 +10,8 @@
         "migrate": "node scripts/migrate.mjs"
     },
     "dependencies": {
+        "@clerk/clerk-react": "^5.22.7",
+        "@clerk/nextjs": "^6.10.3",
         "@next/font": "^14.2.15",
         "@sanity/client": "^6.25.0",
         "@sanity/image-url": "^1.1.0",
@@ -17,11 +19,15 @@
         "dotenv": "^16.4.7",
         "next": "14.2.2",
         "next-sanity": "^9.8.37",
+        "patch-package": "^8.0.0",
         "react": "^18",
         "react-dom": "^18",
+        "react-hot-toast": "^2.5.1",
         "react-icons": "^5.4.0",
         "sanity": "^3.70.0",
-        "styled-components": "^6.1.14"
+        "sonner": "^1.7.3",
+        "styled-components": "^6.1.14",
+        "swr": "^2.3.0"
     },
     "devDependencies": {
         "@types/node": "^20",
