@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 // Define CartItem type
 interface CartItem {
@@ -8,8 +8,8 @@ interface CartItem {
   name: string;
   price: number;
   quantity: number;
-  image: string; 
-};
+  image: string;
+}
 
 // Define CartContextType
 interface CartContextType {
@@ -18,7 +18,8 @@ interface CartContextType {
   addToCart: (item: CartItem) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
-};
+  clearCart: () => void;
+}
 
 // Create Cart context
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -26,6 +27,19 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 // CartProvider component
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
+
+  // 🟢 Load cart from local storage on mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+
+  // 🟢 Save cart to local storage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   // Function to add item to cart
   const addToCart = (item: CartItem) => {
@@ -45,8 +59,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       console.log("New item added to cart");
       return [...prevItems, { ...item, quantity: 1 }];
     });
-
-   
   };
 
   // Function to remove item from the cart
@@ -63,8 +75,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
+  // Function to clear the entire cart
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, cartItems: cart, addToCart, removeFromCart, updateQuantity }}>
+    <CartContext.Provider value={{ cart, cartItems: cart, addToCart, removeFromCart, updateQuantity, clearCart }}>
       {children}
     </CartContext.Provider>
   );
