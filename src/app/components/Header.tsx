@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { FaBars, FaTimes, FaCheck } from "react-icons/fa";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { BsCartDash } from "react-icons/bs";
@@ -81,7 +82,7 @@ const Header = () => {
           <Link href="/">
             <Image src={Logo} alt="Logo" width={150} height={50} />
           </Link>
-
+          <div className="flex items-center space-x-4">
           <Link href={`/cart`}>
             <button className="relative flex gap-2 items-center justify-center bg-white text-xs font-medium rounded-md px-4 py-2 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               <span className="flex items-center gap-2">
@@ -95,6 +96,20 @@ const Header = () => {
               )}
             </button>
           </Link>
+
+           {/* Authentication Buttons */}
+        <div className="flex items-center space-x-4">
+          <SignedOut>
+            <div className="bg-white text-xs font-medium rounded-md px-4 py-2 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <SignInButton />
+            </div>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </div>
+          </div>
+         
         </div>
       </div>
 

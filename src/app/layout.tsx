@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { CartProvider } from "./cart/context/CartContext";
-import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,17 +20,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-            
-      <body className={inter.className}>
-        <CartProvider>
-      <Header/>
-      <Toaster/>
-        {children}
-      <Footer/>
-        </CartProvider>
-      </body>
-    </html>
-
+    <ClerkProvider
+      appearance={{
+        layout: {
+          socialButtonsPlacement: 'bottom',
+          socialButtonsVariant: 'iconButton',
+          termsPageUrl: 'https://clerk.com/terms',
+        },
+      }}
+    >
+      <html lang="en">
+        <body className={inter.className}>
+         
+          <CartProvider>
+            <Header />
+            <Toaster />
+            {children}
+            <Footer />
+          </CartProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
