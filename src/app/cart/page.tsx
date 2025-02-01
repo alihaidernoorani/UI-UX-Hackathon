@@ -6,13 +6,14 @@ import { urlFor } from "@/sanity/lib/image";
 import { useCart } from "./context/CartContext";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaRegHeart } from "react-icons/fa";
+import Link from "next/link";
 
 interface CartItemProps {
   item: {
     id: string;
     name: string;
     price: number;
-    image: any; // Assuming image is an object from Sanity
+    image: any; 
     quantity: number;
   };
   updateQuantity: (id: string, quantity: number) => void;
@@ -64,7 +65,7 @@ const CartPage: React.FC = () => {
             <h2 className="text-2xl font-bold text-gray-800">Summary</h2>
             <Summary calculateTotal={calculateTotal} />
             <button className="w-full py-3 text-white font-semibold rounded-full bg-[#029FAE] hover:bg-[#027f8a]">
-              Checkout
+              <Link href="/checkout">Checkout</Link>
             </button>
           </div>
         </div>
