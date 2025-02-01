@@ -8,6 +8,7 @@ import Logo4 from '@/assets/Seven Logo.png';
 import Logo5 from '@/assets/Burnt Toast Logo.png';
 import Logo6 from '@/assets/PandaDoc Logo.png';
 import Logo7 from '@/assets/MOZ Logo.png';
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -22,9 +23,11 @@ const Hero = () => {
           <h1 className="text-4xl lg:text-6xl font-bold text-gray-800 leading-tight mb-6">
             Best Furniture Collection <br /> For Your Interior.
           </h1>
-          <button className="bg-[#00C2C5] text-white text-lg px-6 py-3 w-[171px] h-[52px] rounded-lg shadow-md hover:bg-[#00A9AA] transition">
-            Shop Now →
-          </button>
+          <Link href={"/shop"}>
+            <button className="bg-[#00C2C5] text-white text-lg px-6 py-3 w-[171px] h-[52px] rounded-lg shadow-md hover:bg-[#00A9AA] transition">
+              Shop Now →
+            </button>
+          </Link>
         </div>
 
         {/* Right Section (Image) */}

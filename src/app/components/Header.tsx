@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { FaBars, FaTimes, FaCheck } from "react-icons/fa";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
@@ -8,40 +8,15 @@ import { BsCartDash } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/assets/Logo.png";
-import { client } from "../../sanity/lib/client";
 import { useCart } from "@/app/cart/context/CartContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [products, setProducts] = useState<any[]>([]);
   const { cartItems } = useCart(); // Access cart state from CartContext
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const query = `*[_type == "products"]{
-          "name": title,
-          slug
-        }`;
-        const fetchedProducts = await client.fetch(query);
-        setProducts(fetchedProducts);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  // Calculate total items in the cart
-  interface Product {
-    name: string;
-    slug: string;
-  }
 
   interface CartItem {
     id: string;
@@ -61,7 +36,9 @@ const Header = () => {
           </div>
           <div className="flex items-center space-x-6 opacity-70">
             <select name="language" className="bg-[#272343] text-white outline-none">
-              <option value="eng">Eng</option>
+              <option value="eng">English</option>
+              <option value="esp">Español</option>
+              <option value="fr">Français</option>
             </select>
             <span>
               <Link href="/pages/faq">Faqs</Link>
@@ -146,7 +123,7 @@ const Header = () => {
           {/* Contact Information */}
           <div className="hidden md:block text-sm">
             <span>
-              Contact: <span className="font-medium">(808) 555-0111</span>
+              Contact: <span className="font-medium">(+92) 123-456-789</span>
             </span>
           </div>
 
@@ -199,7 +176,7 @@ const Header = () => {
               <Link href="/about">About</Link>
             </li>
             <li className="mt-4 border-t pt-4 text-sm">
-              Contact: <span className="font-medium">(808) 555-0111</span>
+              Contact: <span className="font-medium">(+92) 123-456-789</span>
             </li>
           </ul>
         </nav>
