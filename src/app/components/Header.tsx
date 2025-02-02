@@ -123,7 +123,7 @@ const Header = () => {
           {/* Contact Information */}
           <div className="hidden md:block text-sm">
             <span>
-              Contact: <span className="font-medium">(+92) 123-456-789</span>
+              Contact: <span className="font-medium">+(84) 546-6789</span>
             </span>
           </div>
 
@@ -140,7 +140,7 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <nav className="z-20 absolute top-[74px] w-full bg-white shadow-lg p-4 md:hidden">
+        <nav className="z-20 absolute w-full bg-white shadow-lg p-4 md:hidden">
           <ul className="flex flex-col gap-4">
             <li className="hover:text-[#029FAE] hover:font-bold transition-colors">
               <Link href="/">Home</Link>
@@ -176,7 +176,7 @@ const Header = () => {
               <Link href="/about">About</Link>
             </li>
             <li className="mt-4 border-t pt-4 text-sm">
-              Contact: <span className="font-medium">(+92) 123-456-789</span>
+              Contact: <span className="font-medium">+(84) 546-6789</span>
             </li>
           </ul>
         </nav>

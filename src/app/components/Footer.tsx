@@ -96,7 +96,7 @@ const Footer = () => {
       <div className="w-full py-4">
         <div className="w-full max-w-[80%] flex flex-col mx-auto ">
           <p className="text-gray-500 text-sm">
-            © 2025 Blogy - Designed & Developed by Ali Haider Noorani
+            © 2025 Comforty - Designed & Developed by Ali Haider Noorani
           </p>
         </div>
       </div>

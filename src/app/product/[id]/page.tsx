@@ -14,7 +14,7 @@ interface ProductType {
   onSale: boolean;
   isNew: boolean;
   image: string;
-  description?: string;
+  description: string;
   slug: number;
 }
 
